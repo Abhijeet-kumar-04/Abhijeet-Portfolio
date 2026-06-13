@@ -5,7 +5,7 @@ export const portfolioData = {
     role: "Backend Developer & AI Enthusiast",
     subheading: "AI / Backend Systems - Building scalable architectures and intelligent solutions.",
     github: "https://github.com/Abhijeet-kumar-04",
-    linkedin: "#", // Update with actual LinkedIn URL later
+    linkedin: "https://www.linkedin.com/in/abhijeet-kumar-2a280b2a3",
     resume: "/resume.pdf",
     email: "abhijeet@example.com", // Update with actual email
   },
