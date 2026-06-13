@@ -160,7 +160,7 @@ export function EditorialHero() {
             transition={{ delay: 0.4, duration: 1 }}
             className="w-full lg:w-[45%] flex justify-center lg:justify-end items-center mt-12 lg:mt-0 z-10"
           >
-            <div className="relative w-full max-w-[340px] md:max-w-[400px] aspect-[3/4] flex items-center justify-center">
+            <div className="relative w-full max-w-[280px] md:max-w-[340px] aspect-[3/4] flex items-center justify-center">
               
               {/* Ultra-soft ambient glow behind the image */}
               <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/10 to-[#D4AF37]/10 blur-[80px] rounded-full transform -translate-y-4 pointer-events-none"></div>
