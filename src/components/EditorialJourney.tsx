@@ -3,7 +3,7 @@ import { Code, BrainCircuit, ShieldCheck } from "lucide-react";
 
 export function EditorialJourney() {
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32">
+    <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-24 md:py-32" id="about">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
         
         {/* Left Column: About Me */}

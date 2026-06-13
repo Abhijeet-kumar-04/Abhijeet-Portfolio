@@ -119,7 +119,7 @@ export function EditorialArsenal() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="w-full max-w-screen-xl mx-auto px-6 md:px-12 py-32 border-t border-white/5 overflow-hidden">
+    <section id="skills" className="w-full max-w-screen-xl mx-auto px-6 md:px-12 py-32 border-t border-white/5 overflow-hidden">
       
       <div className="mb-24 text-center md:text-left">
         <h2 className="font-serif text-4xl md:text-5xl text-white mb-4">

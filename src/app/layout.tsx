@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${cormorantGaramond.variable} h-full antialiased dark`}
+      className={`${inter.variable} ${cormorantGaramond.variable} h-full antialiased dark scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-black text-gray-300 font-sans">{children}</body>
     </html>
