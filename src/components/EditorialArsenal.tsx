@@ -61,9 +61,9 @@ export function EditorialArsenal() {
   return (
     <section className="w-full max-w-screen-xl mx-auto px-6 md:px-12 py-32 border-t border-white/5 overflow-hidden">
       
-      <div className="text-center mb-24">
-        <h2 className="font-serif text-3xl md:text-4xl text-gray-400 font-light">
-          The technologies, frameworks, and tools I use to build modern digital experiences.
+      <div className="text-center mb-16">
+        <h2 className="font-serif text-3xl md:text-4xl text-white">
+          Technical <span className="text-[#D4AF37] italic">Arsenal</span>
         </h2>
       </div>
 
