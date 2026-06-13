@@ -10,6 +10,16 @@ export async function GET() {
   const query = `
     query {
       user(login: "Abhijeet-kumar-04") {
+        createdAt
+        followers { totalCount }
+        following { totalCount }
+        repositories(first: 100, ownerAffiliations: OWNER, privacy: PUBLIC) {
+          totalCount
+          nodes {
+            stargazerCount
+            forkCount
+          }
+        }
         y2026: contributionsCollection(from: "2026-01-01T00:00:00Z", to: "2026-12-31T23:59:59Z") {
           contributionCalendar { totalContributions }
         }
@@ -19,7 +29,7 @@ export async function GET() {
         y2024: contributionsCollection(from: "2024-01-01T00:00:00Z", to: "2024-12-31T23:59:59Z") {
           contributionCalendar { totalContributions }
         }
-        repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+        repositoriesContributedTo(first: 100, includeUserRepositories: true, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
           totalCount
         }
       }
@@ -34,7 +44,7 @@ export async function GET() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ query }),
-      next: { revalidate: 3600 } // Cache this response for 1 hour to prevent rate limits
+      next: { revalidate: 60 } // Cache for 60 seconds for near real-time updates
     });
 
     if (!response.ok) {
@@ -42,22 +52,36 @@ export async function GET() {
     }
 
     const data = await response.json();
-    
-    // Safely extract and sum the data for all years
-    const y2026 = data?.data?.user?.y2026?.contributionCalendar?.totalContributions || 0;
-    const y2025 = data?.data?.user?.y2025?.contributionCalendar?.totalContributions || 0;
-    const y2024 = data?.data?.user?.y2024?.contributionCalendar?.totalContributions || 0;
-    
-    const totalContributions = y2026 + y2025 + y2024;
-    const projectsBacked = data?.data?.user?.repositoriesContributedTo?.totalCount || null;
+    const user = data?.data?.user;
 
-    if (totalContributions === 0 && !data?.data?.user) {
+    if (!user) {
       throw new Error("Invalid response format from GitHub");
+    }
+    
+    const y2026 = user.y2026?.contributionCalendar?.totalContributions || 0;
+    const y2025 = user.y2025?.contributionCalendar?.totalContributions || 0;
+    const y2024 = user.y2024?.contributionCalendar?.totalContributions || 0;
+    const totalContributions = y2026 + y2025 + y2024;
+    
+    // Calculate total stars and forks
+    let totalStars = 0;
+    let totalForks = 0;
+    if (user.repositories?.nodes) {
+      user.repositories.nodes.forEach((repo: any) => {
+        totalStars += repo.stargazerCount || 0;
+        totalForks += repo.forkCount || 0;
+      });
     }
 
     return NextResponse.json({
+      publicRepos: user.repositories?.totalCount || 0,
+      followers: user.followers?.totalCount || 0,
+      following: user.following?.totalCount || 0,
+      totalStars,
+      totalForks,
       totalContributions,
-      projectsBacked
+      projectsBacked: user.repositoriesContributedTo?.totalCount || 0,
+      joinedYear: new Date(user.createdAt).getFullYear()
     });
 
   } catch (error) {

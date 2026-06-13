@@ -97,57 +97,31 @@ export function CodingProfiles() {
 
     async function fetchGitHubData() {
       try {
-        const username = "Abhijeet-kumar-04";
-        const res = await fetchWithTimeout(`https://api.github.com/users/${username}`);
+        const res = await fetchWithTimeout('/api/github');
+        if (!res.ok) throw new Error("Failed to fetch from internal GitHub API");
         const data = await res.json();
         
-        const reposRes = await fetchWithTimeout(`https://api.github.com/users/${username}/repos?per_page=100`);
-        const reposData = await reposRes.json();
-        
-        const stars = Array.isArray(reposData) ? reposData.reduce((a: number, b: { stargazers_count?: number }) => a + (b.stargazers_count || 0), 0) : 0;
-        const forks = Array.isArray(reposData) ? reposData.reduce((a: number, b: { forks_count?: number }) => a + (b.forks_count || 0), 0) : 0;
-        
-        const joined = new Date(data.created_at).getFullYear();
-        
-        // Fetch absolute all-time Total Contributions (Commits + PRs + Issues)
-        let commits = 167; // Fallback
-        let contribs = 12; // Fixed projects backed count
-        try {
-          const customRes = await fetchWithTimeout('/api/github');
-          if (customRes.ok) {
-            const customData = await customRes.json();
-            if (customData.totalContributions) {
-              commits = customData.totalContributions;
-            }
-            if (customData.projectsBacked) {
-              contribs = customData.projectsBacked;
-            }
-          }
-        } catch (error) {
-          console.error("Failed to fetch secure API route", error);
-        }
-        
         setGithubStats({
-          publicRepos: data.public_repos || 10,
+          publicRepos: data.publicRepos || 11,
           followers: data.followers || 2,
           following: data.following || 4,
-          publicGists: data.public_gists || 0,
-          totalStars: stars || 24,
-          totalForks: forks || 1,
-          totalCommits: commits,
-          contributions: contribs,
-          joinedYear: joined || 2025
+          publicGists: 0,
+          totalStars: data.totalStars || 24,
+          totalForks: data.totalForks || 1,
+          totalCommits: data.totalContributions || 189,
+          contributions: data.projectsBacked || 12,
+          joinedYear: data.joinedYear || 2025
         });
       } catch (error) {
         console.error("Error fetching GitHub stats:", error);
         setGithubStats({
-          publicRepos: 10,
+          publicRepos: 11,
           followers: 2,
           following: 4,
           publicGists: 0,
           totalStars: 24,
           totalForks: 1,
-          totalCommits: 167,
+          totalCommits: 189,
           contributions: 12,
           joinedYear: 2025
         });
