@@ -11,18 +11,28 @@ export const portfolioData = {
   },
   academicHistory: [
     {
-      institution: "National Institute of Technology, Silchar",
-      degree: "B.Tech, Computer Science and Engineering",
-      duration: "2023 - 2027",
-      description: "Highlighting participation in ICPC, TechM CODE, and ZS Campus Beats.",
-      logoColor: "bg-blue-500", 
+      institution: "National Institute of Technology (NIT), Silchar",
+      degree: "Bachelor of Technology in Computer Science and Engineering",
+      duration: "July 2023 - June 2027",
+      description: "Focusing on core computer science principles, advanced data structures, and algorithms while exploring interests in full-stack web development.",
+      grade: "CGPA: 8.17",
+      location: "Assam, India"
     },
     {
-      institution: "Kendriya Vidyalaya Duliajan",
-      degree: "High School",
-      duration: "Completed July 2022",
-      description: "Grade: 89.6%",
-      logoColor: "bg-red-500",
+      institution: "Nirmala Convent High School",
+      degree: "Class XII (CBSE)",
+      duration: "July 2021 - June 2022",
+      description: "Completed higher secondary education with a strong focus on science and mathematics, building a solid foundation for engineering.",
+      grade: "Percentage: 92.2%",
+      location: "Uttar Pradesh, India"
+    },
+    {
+      institution: "Nirmala Convent High School",
+      degree: "Class X (CBSE)",
+      duration: "July 2019 - June 2020",
+      description: "Completed secondary education with distinction.",
+      grade: "Percentage: 89.4%",
+      location: "Uttar Pradesh, India"
     },
   ],
   projects: [
