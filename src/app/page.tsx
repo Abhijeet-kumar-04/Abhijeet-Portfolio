@@ -5,6 +5,7 @@ import { EditorialProjects } from "@/components/EditorialProjects";
 import { NeuralNetwork3D } from "@/components/NeuralNetwork3D";
 import { RevealWrapper } from "@/components/RevealWrapper";
 import { CodingProfiles } from "@/components/CodingProfiles";
+import { EditorialEducation } from "@/components/EditorialEducation";
 
 export default function Home() {
   return (
@@ -31,11 +32,18 @@ export default function Home() {
         </RevealWrapper>
 
         {/* 4. Featured Projects */}
+        <div id="projects">
+          <RevealWrapper delay={0.2}>
+            <EditorialProjects />
+          </RevealWrapper>
+        </div>
+
+        {/* 5. Academic Credentials */}
         <RevealWrapper delay={0.2}>
-          <EditorialProjects />
+          <EditorialEducation />
         </RevealWrapper>
 
-        {/* 5. Coding Profiles & Interests */}
+        {/* 6. Coding Profiles & Interests */}
         <RevealWrapper delay={0.2}>
           <CodingProfiles />
         </RevealWrapper>
