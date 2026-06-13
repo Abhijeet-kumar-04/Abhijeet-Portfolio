@@ -117,7 +117,8 @@ export function EditorialArsenal() {
                   className={`w-20 h-20 md:w-24 md:h-24 bg-[#111111] rounded-3xl flex items-center justify-center transition-all duration-300 relative z-10 ${!isHovered ? 'animate-float' : ''}`}
                   style={{ animationDelay: `${(idx % 12) * 0.2}s` }}
                   animate={{
-                    y: isHovered ? -15 : 0,
+                    y: isHovered ? -20 : 0,
+                    rotate: isHovered ? (idx % 2 === 0 ? 5 : -5) : 0,
                     borderColor: isHovered ? tech.color : "rgba(255,255,255,0.05)",
                     borderWidth: isHovered ? "2px" : "1px",
                     boxShadow: isHovered ? `0 0 40px ${tech.color}40, inset 0 0 20px ${tech.color}10` : "0 0 0px rgba(0,0,0,0)",
