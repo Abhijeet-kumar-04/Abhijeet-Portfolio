@@ -103,11 +103,15 @@ export function CodingProfiles() {
           const statsRes = await fetch(`https://github-readme-stats.vercel.app/api?username=${username}`);
           const statsSvg = await statsRes.text();
           
-          const commitsMatch = statsSvg.match(/Total Commits.*?(\d+)/i);
-          if (commitsMatch) commits = parseInt(commitsMatch[1]);
-          
           const contribMatch = statsSvg.match(/Contributed to.*?(\d+)/i);
           if (contribMatch) contribs = parseInt(contribMatch[1]);
+          
+          // Fetch real contributions graph data (matches GitHub profile exactly)
+          const graphRes = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
+          if (graphRes.ok) {
+            const graphData = await graphRes.json();
+            if (graphData.totalContributions) commits = graphData.totalContributions;
+          }
         } catch (e) {
           console.error("Error parsing stats", e);
         }
@@ -288,11 +292,11 @@ export function CodingProfiles() {
                     </div>
                     <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
                       <span className="text-xl md:text-2xl font-bold text-white">{githubStats?.totalCommits}</span>
-                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Total Commits</span>
+                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Contributions</span>
                     </div>
                     <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
                       <span className="text-xl md:text-2xl font-bold text-teal-400">{githubStats?.contributions}</span>
-                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Contributions</span>
+                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Projects Backed</span>
                     </div>
                     <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
                       <span className="text-xl md:text-2xl font-bold text-purple-400">{githubStats?.joinedYear}</span>
