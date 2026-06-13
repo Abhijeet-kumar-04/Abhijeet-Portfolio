@@ -110,7 +110,7 @@ export function CodingProfiles() {
         const joined = new Date(data.created_at).getFullYear();
         
         // Fetch real all-time commits using the GitHub Search API
-        let commits = 73; // Fallback
+        let commits = 74; // Fallback
         let contribs = 2; // Fixed projects backed count
         try {
           const commitsRes = await fetchWithTimeout(
@@ -147,7 +147,7 @@ export function CodingProfiles() {
           publicGists: 0,
           totalStars: 24,
           totalForks: 1,
-          totalCommits: 73,
+          totalCommits: 74,
           contributions: 2,
           joinedYear: 2025
         });
