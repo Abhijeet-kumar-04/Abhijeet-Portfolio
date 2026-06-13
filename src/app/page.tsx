@@ -27,7 +27,12 @@ export default function Home() {
           <EditorialJourney />
         </RevealWrapper>
 
-        {/* 3. Technical Arsenal */}
+        {/* 3. Coding Profiles & Interests */}
+        <RevealWrapper delay={0.2}>
+          <CodingProfiles />
+        </RevealWrapper>
+
+        {/* 4. Technical Arsenal */}
         <RevealWrapper delay={0.2}>
           <EditorialArsenal />
         </RevealWrapper>
@@ -39,14 +44,9 @@ export default function Home() {
           </RevealWrapper>
         </div>
 
-        {/* 5. Academic Credentials */}
+        {/* 6. Academic Credentials */}
         <RevealWrapper delay={0.2}>
           <EditorialEducation />
-        </RevealWrapper>
-
-        {/* 6. Coding Profiles & Interests */}
-        <RevealWrapper delay={0.2}>
-          <CodingProfiles />
         </RevealWrapper>
 
         {/* 7. Contact Footer */}
