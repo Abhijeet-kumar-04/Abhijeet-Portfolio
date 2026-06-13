@@ -198,10 +198,13 @@ export function EditorialHero() {
               <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
               <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
               
-              {/* Image Placeholder / Core */}
-              <div className="relative w-[70%] h-[70%] rounded-full overflow-hidden flex items-center justify-center border border-[#D4AF37]/20 backdrop-blur-md bg-black/40 shadow-[0_0_50px_rgba(212,175,55,0.1)] translate-z-20">
-                <span className="font-serif italic text-gray-500 text-sm">Portrait Core</span>
-                {/* <img src="/portrait.png" alt="Abhijeet Kumar" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" /> */}
+              {/* Image Core */}
+              <div className="relative w-[70%] h-[70%] rounded-full overflow-hidden flex items-center justify-center border-2 border-[#D4AF37]/40 shadow-[0_0_50px_rgba(212,175,55,0.2)] translate-z-20 group-hover:border-[#2dd4bf]/50 transition-colors duration-500">
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
+                  alt="Abhijeet Kumar" 
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" 
+                />
               </div>
 
             </motion.div>
