@@ -272,7 +272,9 @@ export function EditorialHero() {
         className="mt-auto w-full max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 pb-8 z-20"
       >
         <a 
-          href="#projects" 
+          href="https://github.com/Abhijeet-kumar-04?tab=repositories" 
+          target="_blank"
+          rel="noreferrer"
           className="px-8 py-3 rounded-full border border-teal-500/50 bg-teal-500/10 text-teal-400 font-semibold hover:bg-teal-500 hover:text-black hover:shadow-[0_0_20px_rgba(45,212,191,0.4)] transition-all duration-300 flex items-center gap-2 group text-sm md:text-base"
         >
           View Projects 
@@ -280,8 +282,9 @@ export function EditorialHero() {
         </a>
 
         <a 
-          href="/resume.pdf" 
+          href="https://drive.google.com/drive/folders/1rpnD4o8jLZ3ErkE1BiYo3O2UI40KYeYH?usp=sharing" 
           target="_blank"
+          rel="noreferrer"
           className="px-8 py-3 rounded-full border border-[#D4AF37]/50 bg-[#D4AF37]/10 text-[#D4AF37] font-semibold hover:bg-[#D4AF37] hover:text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 flex items-center gap-2 group text-sm md:text-base"
         >
           Check CV
