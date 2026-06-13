@@ -82,6 +82,31 @@ export function EditorialHero() {
       className="relative min-h-screen flex flex-col bg-[#050505] overflow-hidden perspective-[1000px]"
     >
       
+      {/* Subtle Background Elements */}
+      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 via-transparent to-transparent opacity-30 pointer-events-none z-10"></div>
+      
+      {/* Animated Background Ambient Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <motion.div 
+          animate={{ 
+            x: [0, 100, -50, 0], 
+            y: [0, -50, 100, 0],
+            scale: [1, 1.2, 0.8, 1]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-teal-900/10 blur-[120px]"
+        />
+        <motion.div 
+          animate={{ 
+            x: [0, -100, 50, 0], 
+            y: [0, 100, -50, 0],
+            scale: [1, 0.8, 1.2, 1]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#D4AF37]/5 blur-[150px]"
+        />
+      </div>
       {/* 1. Glassmorphic Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-white/5 h-16 flex items-center px-6 md:px-12 justify-between">
         <div className="text-white font-bold tracking-widest text-lg">A.K.</div>
