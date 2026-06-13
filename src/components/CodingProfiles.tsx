@@ -23,6 +23,8 @@ interface GitHubStats {
   totalStars: number;
   totalForks: number;
   totalCommits: number;
+  contributions: number;
+  joinedYear: number;
 }
 
 export function CodingProfiles() {
@@ -92,15 +94,22 @@ export function CodingProfiles() {
         const stars = Array.isArray(reposData) ? reposData.reduce((a: number, b: any) => a + (b.stargazers_count || 0), 0) : 0;
         const forks = Array.isArray(reposData) ? reposData.reduce((a: number, b: any) => a + (b.forks_count || 0), 0) : 0;
         
-        // Fetch readme stats for commits
+        const joined = new Date(data.created_at).getFullYear();
+        
+        // Fetch readme stats for commits and contributions
         let commits = 55;
+        let contribs = 2;
         try {
           const statsRes = await fetch(`https://github-readme-stats.vercel.app/api?username=${username}`);
           const statsSvg = await statsRes.text();
+          
           const commitsMatch = statsSvg.match(/Total Commits.*?(\d+)/i);
           if (commitsMatch) commits = parseInt(commitsMatch[1]);
+          
+          const contribMatch = statsSvg.match(/Contributed to.*?(\d+)/i);
+          if (contribMatch) contribs = parseInt(contribMatch[1]);
         } catch (e) {
-          console.error("Error parsing commits", e);
+          console.error("Error parsing stats", e);
         }
         
         setGithubStats({
@@ -110,7 +119,9 @@ export function CodingProfiles() {
           publicGists: data.public_gists || 0,
           totalStars: stars,
           totalForks: forks,
-          totalCommits: commits
+          totalCommits: commits,
+          contributions: contribs,
+          joinedYear: joined || 2024
         });
       } catch (error) {
         console.error("Error fetching GitHub stats:", error);
@@ -121,7 +132,9 @@ export function CodingProfiles() {
           publicGists: 0,
           totalStars: 0,
           totalForks: 0,
-          totalCommits: 55
+          totalCommits: 55,
+          contributions: 2,
+          joinedYear: 2024
         });
       } finally {
         setGithubLoading(false);
@@ -232,7 +245,7 @@ export function CodingProfiles() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white">GitHub</h3>
-                    <p className="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider font-medium">Open Source & Version Control</p>
+                    <p className="text-[10px] md:text-xs text-[#D4AF37] uppercase tracking-wider font-medium">Open Source & Version Control</p>
                   </div>
                 </div>
                 <a href="https://github.com/Abhijeet-kumar-04" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-white transition-colors relative z-10">
@@ -260,7 +273,7 @@ export function CodingProfiles() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 relative z-10">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 relative z-10">
                     <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
                       <span className="text-xl md:text-2xl font-bold text-white">{githubStats?.followers}</span>
                       <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Followers</span>
@@ -276,6 +289,14 @@ export function CodingProfiles() {
                     <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
                       <span className="text-xl md:text-2xl font-bold text-white">{githubStats?.totalCommits}</span>
                       <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Total Commits</span>
+                    </div>
+                    <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
+                      <span className="text-xl md:text-2xl font-bold text-teal-400">{githubStats?.contributions}</span>
+                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Contributions</span>
+                    </div>
+                    <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
+                      <span className="text-xl md:text-2xl font-bold text-purple-400">{githubStats?.joinedYear}</span>
+                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Joined Year</span>
                     </div>
                   </div>
                 </motion.div>
