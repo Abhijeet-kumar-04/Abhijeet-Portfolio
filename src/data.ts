@@ -60,14 +60,14 @@ export const portfolioData = {
       ]
     },
     {
-      title: "SignUp_project",
-      subtitle: "A robust authentication system with profile management capabilities.",
-      description: "Implements modern access control, handling user lifecycle from registration (standard email/password and Google OAuth) to secure login, password resets, and basic profile editing.",
-      features: ["Google OAuth", "Email/Password Auth", "Password Resets", "User Profiles"],
-      techStack: ["Node.js", "Express", "HTML/CSS"],
+      title: "Music-Hub",
+      subtitle: "A full-stack audio streaming and playlist management platform.",
+      description: "Implements a complete music streaming experience with real-time playback, custom user playlists, advanced search functionalities, and robust user authentication. Built to handle complex media states and scalable backend requests.",
+      features: ["Audio Streaming", "Custom Playlists", "Advanced Search", "Secure Auth"],
+      techStack: ["Next.js", "Node.js", "MongoDB", "Express"],
       links: [
-        { label: "System Overview ↗", url: "#" },
-        { label: "Client Feedback ↗", url: "#" },
+        { label: "Live Platform ↗", url: "#" },
+        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04" },
       ]
     },
   ],
