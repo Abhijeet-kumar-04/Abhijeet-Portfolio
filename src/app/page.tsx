@@ -6,6 +6,7 @@ import { NeuralNetwork3D } from "@/components/NeuralNetwork3D";
 import { RevealWrapper } from "@/components/RevealWrapper";
 import { CodingProfiles } from "@/components/CodingProfiles";
 import { EditorialEducation } from "@/components/EditorialEducation";
+import { EditorialContact } from "@/components/EditorialContact";
 
 export default function Home() {
   return (
@@ -46,6 +47,11 @@ export default function Home() {
         {/* 6. Coding Profiles & Interests */}
         <RevealWrapper delay={0.2}>
           <CodingProfiles />
+        </RevealWrapper>
+
+        {/* 7. Contact Footer */}
+        <RevealWrapper delay={0.2}>
+          <EditorialContact />
         </RevealWrapper>
       </div>
       
