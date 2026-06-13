@@ -153,7 +153,7 @@ export function EditorialHero() {
             </motion.div>
           </div>
 
-          {/* Right Column (Portrait Area with 3D Tech Orbit) */}
+          {/* Right Column (Interactive Bento Readouts) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -163,48 +163,36 @@ export function EditorialHero() {
             {/* Parallax Container */}
             <motion.div 
               style={{ rotateX, rotateY }}
-              className="relative aspect-square max-w-[320px] md:max-w-md w-full bg-transparent flex items-center justify-center group preserve-3d"
+              className="relative w-full max-w-[360px] aspect-square flex items-center justify-center group preserve-3d"
             >
               
-              {/* Subtle glowing ring background (Center) */}
-              <div className="absolute inset-12 rounded-full border border-teal-500/10 bg-teal-500/5 blur-xl transition-colors duration-700"></div>
-
-              {/* 3D Orbit Ring */}
-              <div className="absolute inset-0 rounded-full border border-white/5 animate-[spin_20s_linear_infinite] shadow-[0_0_30px_rgba(45,212,191,0.05)]">
-                
-                {/* Orbiting Icons */}
-                {/* 1. C++ */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#111827] border border-white/10 flex items-center justify-center text-xs font-bold text-blue-400 shadow-[0_0_15px_rgba(96,165,250,0.5)] animate-[spin_20s_linear_infinite_reverse]">
-                  C++
-                </div>
-                {/* 2. TypeScript */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-10 h-10 rounded-full bg-[#111827] border border-white/10 flex items-center justify-center text-[10px] font-bold text-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)] animate-[spin_20s_linear_infinite_reverse]">
-                  TS
-                </div>
-                {/* 3. Node.js */}
-                <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#111827] border border-white/10 flex items-center justify-center text-[10px] font-bold text-green-500 shadow-[0_0_15px_rgba(34,197,94,0.5)] animate-[spin_20s_linear_infinite_reverse]">
-                  Node
-                </div>
-                {/* 4. MongoDB */}
-                <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#111827] border border-white/10 flex items-center justify-center text-[10px] font-bold text-green-600 shadow-[0_0_15px_rgba(22,163,74,0.5)] animate-[spin_20s_linear_infinite_reverse]">
-                  MDB
-                </div>
-
-              </div>
-              
-              {/* High-tech Corner Brackets (Static framing) */}
-              <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
-              <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
-              <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
-              <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
-              
-              {/* Image Core */}
-              <div className="relative w-[70%] h-[70%] rounded-full overflow-hidden flex items-center justify-center border-2 border-[#D4AF37]/40 shadow-[0_0_50px_rgba(212,175,55,0.2)] translate-z-20 group-hover:border-[#2dd4bf]/50 transition-colors duration-500">
+              {/* Main Portrait Tile */}
+              <div className="relative w-[85%] h-[85%] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(45,212,191,0.05)] z-10 transition-transform duration-500 group-hover:scale-[1.02]">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" 
+                  src="/portrait.jpg" 
                   alt="Abhijeet Kumar" 
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" 
+                  className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" 
                 />
+              </div>
+
+              {/* Bento Tile 1: Status (Top Right) */}
+              <div className="absolute top-[2%] right-[0%] bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-3 shadow-2xl z-20 translate-z-20 group-hover:translate-x-3 group-hover:-translate-y-3 transition-all duration-500 flex items-center gap-3 cursor-default">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500"></span>
+                </span>
+                <span className="text-[10px] font-mono text-gray-300 font-bold tracking-wider">SYSTEM_ONLINE</span>
+              </div>
+
+              {/* Bento Tile 2: Commits (Bottom Left) */}
+              <div className="absolute bottom-[5%] left-[-5%] bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-2xl z-20 translate-z-20 group-hover:-translate-x-3 group-hover:translate-y-3 transition-all duration-500 cursor-default">
+                <div className="text-[10px] font-mono text-gray-500 font-bold mb-1">TOTAL_COMMITS</div>
+                <div className="text-2xl font-sans font-black text-white">842+</div>
+              </div>
+
+              {/* Bento Tile 3: Stack Pill (Bottom Right) */}
+              <div className="absolute bottom-[10%] right-[-5%] bg-black/60 backdrop-blur-md border border-[#D4AF37]/30 rounded-xl px-4 py-2 shadow-2xl z-20 translate-z-20 group-hover:translate-x-3 group-hover:translate-y-3 transition-all duration-500 cursor-default">
+                <span className="text-xs font-mono text-[#D4AF37] font-bold">Node.js / C++</span>
               </div>
 
             </motion.div>
