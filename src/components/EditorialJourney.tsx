@@ -36,8 +36,8 @@ export function EditorialJourney() {
               <span className="text-xs text-gray-500 uppercase tracking-wider text-center">Codeforces</span>
             </div>
             <div className="flex flex-col items-center justify-center p-6 bg-white/[0.02] border border-white/5 rounded-[1.5rem] hover:bg-white/[0.04] transition-colors">
-              <span className="text-3xl font-serif text-[#D4AF37] mb-2">8.17</span>
-              <span className="text-xs text-gray-500 uppercase tracking-wider text-center">CGPA</span>
+              <span className="font-serif text-3xl md:text-4xl text-[#D4AF37]">10+</span>
+              <span className="text-xs text-gray-500 uppercase tracking-wider text-center">Projects</span>
             </div>
           </div>
 
