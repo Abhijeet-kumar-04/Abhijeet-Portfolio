@@ -109,18 +109,17 @@ export function CodingProfiles() {
         
         const joined = new Date(data.created_at).getFullYear();
         
-        // Fetch real all-time commits using the GitHub Search API
-        let commits = 74; // Fallback
+        // Fetch absolute all-time Total Contributions (Commits + PRs + Issues)
+        let commits = 91; // Fallback
         let contribs = 2; // Fixed projects backed count
         try {
-          const commitsRes = await fetchWithTimeout(
-            `https://api.github.com/search/commits?q=author:${username}`,
-            { headers: { 'Accept': 'application/vnd.github.cloak-preview' } }
+          const contribRes = await fetchWithTimeout(
+            `https://github-contributions.vercel.app/api/v1/${username}`
           );
-          if (commitsRes.ok) {
-            const commitsData = await commitsRes.json();
-            if (commitsData.total_count !== undefined) {
-              commits = commitsData.total_count;
+          if (contribRes.ok) {
+            const contribData = await contribRes.json();
+            if (contribData.years && Array.isArray(contribData.years)) {
+              commits = contribData.years.reduce((sum: number, year: any) => sum + (year.total || 0), 0);
             }
           }
         } catch (e) {
@@ -147,7 +146,7 @@ export function CodingProfiles() {
           publicGists: 0,
           totalStars: 24,
           totalForks: 1,
-          totalCommits: 74,
+          totalCommits: 91,
           contributions: 2,
           joinedYear: 2025
         });
@@ -303,7 +302,7 @@ export function CodingProfiles() {
                     </div>
                     <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
                       <span className="text-xl md:text-2xl font-bold text-white">{githubStats?.totalCommits}</span>
-                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Total Commits</span>
+                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Contributions</span>
                     </div>
                     <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
                       <span className="text-xl md:text-2xl font-bold text-teal-400">{githubStats?.contributions}</span>
