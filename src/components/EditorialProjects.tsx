@@ -37,17 +37,20 @@ export function EditorialProjects() {
         </h2>
       </div>
 
-      <div className="space-y-32">
+      <div className="space-y-24">
         {portfolioData.projects.map((project, idx) => {
           const isEven = idx % 2 === 0;
 
           return (
             <div
               key={idx}
-              className={`flex flex-col ${
+              className={`relative flex flex-col ${
                 isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-              } gap-12 lg:gap-20 items-center`}
+              } gap-12 lg:gap-16 items-center bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden group/project transition-all duration-700 hover:border-white/10 hover:bg-[#0f0f0f]/90`}
             >
+              {/* Subtle Ambient Glow for the entire unified card */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${isEven ? 'from-[#D4AF37]/5 to-transparent' : 'from-transparent to-[#D4AF37]/5'} opacity-0 group-hover/project:opacity-100 transition-opacity duration-700 pointer-events-none`}></div>
+              
               
               {/* Visual Side */}
               <div className="w-full lg:w-1/2 aspect-video">
