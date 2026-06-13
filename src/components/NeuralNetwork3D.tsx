@@ -183,13 +183,13 @@ function NetworkNodes() {
   );
 }
 
-export function NeuralNetwork3D() {
+export function NeuralNetwork3D({ cameraDistance = 15 }: { cameraDistance?: number }) {
   return (
     <div className="absolute inset-0 z-0 bg-transparent overflow-hidden pointer-events-auto">
       {/* Centered Deep Bronze Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D4AF37]/10 blur-[120px] rounded-full pointer-events-none"></div>
       
-      <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
+      <Canvas camera={{ position: [0, 0, cameraDistance], fov: 60 }}>
         <NetworkNodes />
       </Canvas>
     </div>

@@ -89,7 +89,7 @@ export function EditorialHero() {
       
       {/* 3D Neural Network Background */}
       <div className="absolute inset-0 z-0 opacity-50 mix-blend-screen pointer-events-none">
-        <NeuralNetwork3D />
+        <NeuralNetwork3D cameraDistance={10} />
       </div>
       {/* 1. Glassmorphic Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-white/5 h-16 flex items-center px-6 md:px-12 justify-between">
