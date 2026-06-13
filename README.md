@@ -8,7 +8,7 @@ Welcome to the open-source repository for my personal developer portfolio. Built
 
 ## 🌟 Live Demo
 
-**[abhijeetkumar.com](https://abhijeet-portfolio.vercel.app/)** *(Replace with your actual Vercel link once deployed!)*
+**[abhijeet-portfolio-teal.vercel.app](https://abhijeet-portfolio-teal.vercel.app/)** 
 
 ---
 
