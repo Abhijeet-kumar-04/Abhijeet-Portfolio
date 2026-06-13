@@ -28,17 +28,47 @@ export const portfolioData = {
   projects: [
     {
       title: "Compile-Hire",
-      description: "A scalable recruitment platform matching developers with top companies using smart algorithms.",
+      subtitle: "A comprehensive recruitment suite with intelligent matching algorithms.",
+      description: "Transform the technical hiring process with our streamlined, intelligent platform. Connect with top technical talent efficiently through unified dashboards, post-interview evaluation, and smart candidate matching.",
+      features: ["Integrated Candidate Dashboard", "Intelligent Matching", "RBAC", "Evaluation Flow"],
       techStack: ["TypeScript", "Node.js", "Express", "MongoDB"],
-      link: "https://github.com/Abhijeet-kumar-04",
-      borderColor: "border-purple-500/50",
+      links: [
+        { label: "Live Demo ↗", url: "#" },
+        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04" },
+      ]
     },
     {
       title: "NoteBook",
-      description: "A secure and real-time collaborative note-taking application.",
+      subtitle: "Secure and real-time collaborative note-taking application.",
+      description: "A collaborative workspace for teams, facilitating instant information sharing. Features include tag-based filtering and search, real-time updates via WebSockets, and a distributed Redis caching layer for performance.",
+      features: ["Real-time Editing", "WebSocket Integration", "Advanced Filtering", "Caching Layer"],
       techStack: ["React", "Node.js", "WebSockets", "Redis"],
-      link: "https://github.com/Abhijeet-kumar-04",
-      borderColor: "border-blue-500/50",
+      links: [
+        { label: "View Project ↗", url: "#" },
+        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04" },
+      ]
+    },
+    {
+      title: "Hackathon-Platform",
+      subtitle: "End-to-end management from ideation to submission and judging.",
+      description: "A central platform to manage hackathons efficiently. Implements dynamic content discovery using flexible filters and real-time data updates via WebSockets for a seamless user experience.",
+      features: ["Ideation to Submission", "Judging Workflow", "Dynamic Filtering", "WebSocket-based Updates"],
+      techStack: ["React", "Node.js", "WebSockets", "Redis"],
+      links: [
+        { label: "View Platform ↗", url: "#" },
+        { label: "Client Feedback ↗", url: "#" },
+      ]
+    },
+    {
+      title: "SignUp_project",
+      subtitle: "A robust authentication system with profile management capabilities.",
+      description: "Implements modern access control, handling user lifecycle from registration (standard email/password and Google OAuth) to secure login, password resets, and basic profile editing.",
+      features: ["Google OAuth", "Email/Password Auth", "Password Resets", "User Profiles"],
+      techStack: ["Node.js", "Express", "HTML/CSS"],
+      links: [
+        { label: "System Overview ↗", url: "#" },
+        { label: "Client Feedback ↗", url: "#" },
+      ]
     },
   ],
 };
