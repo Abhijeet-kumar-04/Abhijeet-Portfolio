@@ -106,6 +106,12 @@ const techStack = [
     icon: <span className="text-4xl font-serif text-[#007acc]">VS</span>,
     desc: "Powerful, highly extensible code editor for streamlined and productive development."
   },
+  { 
+    name: "GitHub", 
+    color: "#ffffff",
+    icon: <span className="text-4xl font-bold font-serif text-white italic">gh</span>,
+    desc: "Collaborative platform for hosting, reviewing, and managing software development projects."
+  },
 ];
 
 export function EditorialArsenal() {
