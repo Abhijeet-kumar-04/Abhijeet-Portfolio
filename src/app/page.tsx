@@ -4,6 +4,7 @@ import { EditorialArsenal } from "@/components/EditorialArsenal";
 import { EditorialProjects } from "@/components/EditorialProjects";
 import { NeuralNetwork3D } from "@/components/NeuralNetwork3D";
 import { RevealWrapper } from "@/components/RevealWrapper";
+import { CodingProfiles } from "@/components/CodingProfiles";
 
 export default function Home() {
   return (
@@ -22,6 +23,11 @@ export default function Home() {
         {/* 2. The Journey / Developer Philosophy */}
         <RevealWrapper delay={0.2}>
           <EditorialJourney />
+        </RevealWrapper>
+
+        {/* 2.5 Coding Profiles & Interests */}
+        <RevealWrapper delay={0.2}>
+          <CodingProfiles />
         </RevealWrapper>
 
         {/* 3. Technical Arsenal */}
