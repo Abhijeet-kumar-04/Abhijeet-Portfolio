@@ -147,7 +147,7 @@ export function EditorialHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="bg-[#0B0F19]/80 backdrop-blur-md border border-white/10 rounded-lg mt-12 max-w-lg shadow-2xl overflow-hidden font-mono text-sm leading-relaxed"
+              className="bg-[#0B0F19]/80 backdrop-blur-md border border-white/10 rounded-xl mt-12 w-full max-w-2xl shadow-2xl overflow-hidden font-mono text-base leading-relaxed"
             >
               {/* Window Controls & Tabs */}
               <div className="flex flex-col bg-black/40 border-b border-white/10">
@@ -157,7 +157,7 @@ export function EditorialHero() {
                   <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                 </div>
                 {/* File Tabs */}
-                <div className="flex text-xs px-2 pt-1 overflow-x-auto hide-scrollbar select-none">
+                <div className="flex text-sm px-2 pt-1 overflow-x-auto hide-scrollbar select-none">
                   <div 
                     onClick={() => setActiveTab("about")}
                     className={`px-4 py-2 cursor-pointer flex items-center rounded-t-md transition-colors ${activeTab === "about" ? "border-b-[2px] border-teal-400 text-teal-400 bg-white/5" : "text-gray-500 hover:text-gray-300"}`}
@@ -174,7 +174,7 @@ export function EditorialHero() {
               </div>
 
               {/* Dynamic Content Data */}
-              <div className="p-6 text-gray-300 min-h-[260px]">
+              <div className="p-6 md:p-8 text-gray-300 min-h-[300px]">
                 
                 {activeTab === "about" && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
@@ -230,7 +230,7 @@ export function EditorialHero() {
             transition={{ delay: 0.4, duration: 1 }}
             className="w-full lg:w-[45%] flex justify-center lg:justify-end items-center mt-12 lg:mt-0 z-10"
           >
-            <div className="relative w-full max-w-[280px] md:max-w-[340px] aspect-[3/4] flex items-center justify-center">
+            <div className="relative w-full max-w-[320px] md:max-w-[480px] aspect-[3/4] flex items-center justify-center">
               
               {/* Ultra-soft ambient glow behind the image */}
               <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/10 to-[#D4AF37]/10 blur-[80px] rounded-full transform -translate-y-4 pointer-events-none"></div>
