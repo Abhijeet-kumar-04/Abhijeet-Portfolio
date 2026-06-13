@@ -10,10 +10,14 @@ export async function GET() {
   const query = `
     query {
       user(login: "Abhijeet-kumar-04") {
-        contributionsCollection {
-          contributionCalendar {
-            totalContributions
-          }
+        y2026: contributionsCollection(from: "2026-01-01T00:00:00Z", to: "2026-12-31T23:59:59Z") {
+          contributionCalendar { totalContributions }
+        }
+        y2025: contributionsCollection(from: "2025-01-01T00:00:00Z", to: "2025-12-31T23:59:59Z") {
+          contributionCalendar { totalContributions }
+        }
+        y2024: contributionsCollection(from: "2024-01-01T00:00:00Z", to: "2024-12-31T23:59:59Z") {
+          contributionCalendar { totalContributions }
         }
         repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
           totalCount
@@ -39,11 +43,15 @@ export async function GET() {
 
     const data = await response.json();
     
-    // Safely extract the data
-    const totalContributions = data?.data?.user?.contributionsCollection?.contributionCalendar?.totalContributions || null;
+    // Safely extract and sum the data for all years
+    const y2026 = data?.data?.user?.y2026?.contributionCalendar?.totalContributions || 0;
+    const y2025 = data?.data?.user?.y2025?.contributionCalendar?.totalContributions || 0;
+    const y2024 = data?.data?.user?.y2024?.contributionCalendar?.totalContributions || 0;
+    
+    const totalContributions = y2026 + y2025 + y2024;
     const projectsBacked = data?.data?.user?.repositoriesContributedTo?.totalCount || null;
 
-    if (totalContributions === null) {
+    if (totalContributions === 0 && !data?.data?.user) {
       throw new Error("Invalid response format from GitHub");
     }
 
