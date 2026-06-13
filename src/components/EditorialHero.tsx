@@ -153,47 +153,51 @@ export function EditorialHero() {
             </motion.div>
           </div>
 
-          {/* Right Column (Interactive Bento Readouts) */}
+          {/* Right Column (Idea 4: Liquid Organic Morph Final) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 1 }}
             className="w-full lg:w-[45%] flex justify-center lg:justify-end items-center mt-12 lg:mt-0 z-10 perspective-[1000px]"
           >
+            {/* Custom Morph Animation */}
+            <style>
+              {`
+                @keyframes blobMorph {
+                  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+                  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+                  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+                }
+              `}
+            </style>
+
             {/* Parallax Container */}
             <motion.div 
               style={{ rotateX, rotateY }}
-              className="relative w-full max-w-[360px] aspect-square flex items-center justify-center group preserve-3d"
+              className="relative aspect-[3/4] max-w-[320px] md:max-w-[380px] w-full bg-transparent flex items-center justify-center group preserve-3d"
             >
               
-              {/* Main Portrait Tile */}
-              <div className="relative w-[85%] h-[85%] border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(45,212,191,0.05)] z-10 transition-transform duration-500 group-hover:scale-[1.02]">
+              {/* Soft Aura Behind Blob */}
+              <div 
+                className="absolute inset-2 bg-teal-500/20 blur-[50px] opacity-60 transition-colors duration-700 group-hover:opacity-100 group-hover:bg-[#D4AF37]/20 translate-z-[-20px]"
+                style={{ animation: 'blobMorph 8s ease-in-out infinite alternate' }}
+              ></div>
+
+              {/* The Morphing Blob Frame */}
+              <div 
+                className="relative w-[90%] h-[90%] overflow-hidden border-2 border-white/10 shadow-[0_0_50px_rgba(45,212,191,0.15)] transition-transform duration-700 group-hover:scale-[1.03] bg-[#0A0A0A] translate-z-10"
+                style={{ animation: 'blobMorph 12s ease-in-out infinite' }}
+              >
                 <img 
-                  src="/portrait.jpg" 
+                  src="/portrait-2.jpg" 
                   alt="Abhijeet Kumar" 
-                  className="w-full h-full object-cover grayscale opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500" 
+                  className="w-full h-full object-cover object-top grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-100" 
                 />
               </div>
 
-              {/* Bento Tile 1: Status (Top Right) */}
-              <div className="absolute top-[2%] right-[0%] bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-3 shadow-2xl z-20 translate-z-20 group-hover:translate-x-3 group-hover:-translate-y-3 transition-all duration-500 flex items-center gap-3 cursor-default">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500"></span>
-                </span>
-                <span className="text-[10px] font-mono text-gray-300 font-bold tracking-wider">SYSTEM_ONLINE</span>
-              </div>
-
-              {/* Bento Tile 2: Commits (Bottom Left) */}
-              <div className="absolute bottom-[5%] left-[-5%] bg-black/60 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-2xl z-20 translate-z-20 group-hover:-translate-x-3 group-hover:translate-y-3 transition-all duration-500 cursor-default">
-                <div className="text-[10px] font-mono text-gray-500 font-bold mb-1">TOTAL_COMMITS</div>
-                <div className="text-2xl font-sans font-black text-white">842+</div>
-              </div>
-
-              {/* Bento Tile 3: Stack Pill (Bottom Right) */}
-              <div className="absolute bottom-[10%] right-[-5%] bg-black/60 backdrop-blur-md border border-[#D4AF37]/30 rounded-xl px-4 py-2 shadow-2xl z-20 translate-z-20 group-hover:translate-x-3 group-hover:translate-y-3 transition-all duration-500 cursor-default">
-                <span className="text-xs font-mono text-[#D4AF37] font-bold">Node.js / C++</span>
-              </div>
+              {/* Minimal floating accent particles */}
+              <div className="absolute top-[10%] right-[5%] w-3 h-3 rounded-full bg-[#D4AF37]/60 blur-[2px] animate-pulse translate-z-20"></div>
+              <div className="absolute bottom-[15%] left-[5%] w-2 h-2 rounded-full bg-teal-400/60 blur-[1px] animate-pulse translate-z-20" style={{ animationDelay: '1s' }}></div>
 
             </motion.div>
           </motion.div>
