@@ -33,8 +33,19 @@ export const portfolioData = {
       features: ["Integrated Candidate Dashboard", "Intelligent Matching", "RBAC", "Evaluation Flow"],
       techStack: ["TypeScript", "Node.js", "Express", "MongoDB"],
       links: [
-        { label: "Live Demo ↗", url: "#" },
-        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04" },
+        { label: "Live Demo ↗", url: "https://compile-hire.vercel.app/" },
+        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04/Compile-Hire" },
+      ]
+    },
+    {
+      title: "Music Hub",
+      subtitle: "Full-stack music streaming platform with seamless playback.",
+      description: "A dynamic, full-stack application for music lovers. Features seamless file uploading, interactive playback controls, and a robust database structure for cataloging and searching through vast libraries of audio.",
+      features: ["Music Uploads", "Interactive Playback", "Dynamic Search", "Secure Authentication"],
+      techStack: ["React.js", "Express.js", "MongoDB", "Node.js"],
+      links: [
+        { label: "Live Demo ↗", url: "https://music-hub-demo.vercel.app/" },
+        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04/Music-Hub" },
       ]
     },
     {
@@ -44,8 +55,8 @@ export const portfolioData = {
       features: ["Real-time Editing", "WebSocket Integration", "Advanced Filtering", "Caching Layer"],
       techStack: ["React", "Node.js", "WebSockets", "Redis"],
       links: [
-        { label: "View Project ↗", url: "#" },
-        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04" },
+        { label: "Live Demo ↗", url: "https://notebook-app-demo.vercel.app/" },
+        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04/NoteBook" },
       ]
     },
     {
@@ -55,19 +66,8 @@ export const portfolioData = {
       features: ["Ideation to Submission", "Judging Workflow", "Dynamic Filtering", "WebSocket-based Updates"],
       techStack: ["React", "Node.js", "WebSockets", "Redis"],
       links: [
-        { label: "View Platform ↗", url: "#" },
-        { label: "Client Feedback ↗", url: "#" },
-      ]
-    },
-    {
-      title: "Music-Hub",
-      subtitle: "A full-stack audio streaming and playlist management platform.",
-      description: "Implements a complete music streaming experience with real-time playback, custom user playlists, advanced search functionalities, and robust user authentication. Built to handle complex media states and scalable backend requests.",
-      features: ["Audio Streaming", "Custom Playlists", "Advanced Search", "Secure Auth"],
-      techStack: ["Next.js", "Node.js", "MongoDB", "Express"],
-      links: [
-        { label: "Live Platform ↗", url: "#" },
-        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04" },
+        { label: "Coming Soon", url: "#", disabled: true },
+        { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04/Hackathon-Platform" },
       ]
     },
   ],

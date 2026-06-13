@@ -102,45 +102,51 @@ const HackathonVisual = () => (
 );
 
 const MusicHubVisual = () => (
-  <div className="relative w-full h-full bg-[#0a0a0a] rounded-[2rem] border border-white/5 overflow-hidden flex items-center justify-center p-8 group">
-    {/* Dynamic Background Glow */}
-    <div className="absolute inset-0 bg-gradient-to-br from-[#1db954]/20 via-[#000] to-[#1db954]/5 opacity-50 transition-all duration-700 group-hover:scale-110"></div>
+  <div className="relative w-full h-full bg-[#0a0a0a] rounded-[2rem] border border-white/5 overflow-hidden flex items-center justify-center group p-6">
+    {/* Background Glow */}
+    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 opacity-50"></div>
     
-    {/* Glass Player UI */}
-    <div className="relative z-10 w-3/4 max-w-[280px] bg-[#111]/80 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl transition-transform duration-700 group-hover:scale-105 p-5 flex flex-col items-center">
-      {/* Cover Art Placeholder */}
-      <div className="w-full aspect-square bg-gradient-to-br from-gray-800 to-black rounded-xl mb-6 shadow-inner border border-white/5 overflow-hidden relative">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-16 h-16 rounded-full border-[4px] border-[#1db954]/30 flex items-center justify-center">
-            <div className="w-4 h-4 bg-[#1db954]/50 rounded-full"></div>
+    {/* Music Player Window */}
+    <div className="relative z-10 w-full h-full bg-[#111] border border-white/10 rounded-xl shadow-2xl transition-transform duration-700 group-hover:scale-105 overflow-hidden flex flex-col">
+      {/* Header */}
+      <div className="h-8 bg-[#1a1a1a] border-b border-white/5 flex items-center px-4 space-x-2">
+        <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+        <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+        <div className="mx-auto text-gray-500 text-[10px] tracking-widest uppercase">Music Hub</div>
+      </div>
+      
+      {/* Content */}
+      <div className="flex-1 flex p-4 gap-4">
+        {/* Album Art Placeholder */}
+        <div className="w-1/3 aspect-square bg-gradient-to-br from-indigo-500/30 to-purple-600/30 rounded-lg border border-white/10 flex items-center justify-center shadow-inner relative overflow-hidden">
+           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 mix-blend-overlay"></div>
+           <div className="w-12 h-12 rounded-full bg-[#111] border border-white/20 flex items-center justify-center">
+             <div className="w-3 h-3 rounded-full bg-gray-500"></div>
+           </div>
+        </div>
+        
+        {/* Playlist / Controls */}
+        <div className="flex-1 flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="h-4 w-3/4 bg-white/20 rounded"></div>
+            <div className="h-3 w-1/2 bg-white/10 rounded"></div>
+          </div>
+          
+          <div className="space-y-3 mt-4">
+             {/* Progress Bar */}
+             <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+               <div className="w-1/3 h-full bg-indigo-500 rounded-full"></div>
+             </div>
+             
+             {/* Controls */}
+             <div className="flex items-center justify-between px-4">
+               <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center"><div className="w-2 h-2 bg-gray-400 rotate-180" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 50%)' }}></div></div>
+               <div className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.5)]"><div className="w-3 h-3 bg-white" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 50%)' }}></div></div>
+               <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center"><div className="w-2 h-2 bg-gray-400" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 50%)' }}></div></div>
+             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Track Info */}
-      <div className="w-full flex flex-col items-start mb-4">
-        <div className="h-4 w-3/4 bg-white/20 rounded mb-2"></div>
-        <div className="h-3 w-1/2 bg-white/10 rounded"></div>
-      </div>
-      
-      {/* Progress Bar */}
-      <div className="w-full flex items-center space-x-2 mb-4">
-        <span className="text-[8px] text-gray-500">1:24</span>
-        <div className="flex-1 h-1 bg-white/10 rounded-full relative">
-          <div className="absolute top-0 left-0 h-full w-1/3 bg-[#1db954] rounded-full"></div>
-        </div>
-        <span className="text-[8px] text-gray-500">4:05</span>
-      </div>
-      
-      {/* Controls */}
-      <div className="w-full flex items-center justify-between px-4">
-        <div className="w-4 h-4 bg-white/20 rounded-full"></div>
-        <div className="w-5 h-5 bg-white/30 rounded-full"></div>
-        <div className="w-10 h-10 bg-[#1db954] rounded-full shadow-[0_0_15px_rgba(29,185,84,0.4)] flex items-center justify-center">
-          <div className="w-3 h-3 bg-black rounded-sm translate-x-[1px]"></div>
-        </div>
-        <div className="w-5 h-5 bg-white/30 rounded-full"></div>
-        <div className="w-4 h-4 bg-white/20 rounded-full"></div>
       </div>
     </div>
   </div>
@@ -148,9 +154,9 @@ const MusicHubVisual = () => (
 
 const getProjectVisual = (title: string) => {
   if (title === "Compile-Hire") return <CompileHireVisual />;
+  if (title === "Music Hub") return <MusicHubVisual />;
   if (title === "NoteBook") return <NoteBookVisual />;
   if (title === "Hackathon-Platform") return <HackathonVisual />;
-  if (title === "Music-Hub") return <MusicHubVisual />;
   return null;
 };
 
@@ -225,24 +231,38 @@ export function EditorialProjects() {
                 {/* Action Buttons */}
                 {project.links && (
                   <div className="flex flex-wrap gap-4 pt-6">
-                    {project.links.map((link, i) => (
-                      <a
-                        key={i}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`group px-6 py-3 rounded-full flex items-center gap-2 transition-all ${
-                          i === 0 
-                            ? "bg-white text-black hover:bg-[#D4AF37]" 
-                            : "border border-white/20 text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
-                        }`}
-                      >
-                        <span className="font-sans text-sm font-medium">
-                          {link.label.replace(" ↗", "")}
-                        </span>
-                        <ArrowRight size={16} className={`${i === 0 ? "text-black" : "text-gray-400 group-hover:text-[#D4AF37]"} transition-all`} />
-                      </a>
-                    ))}
+                    {project.links.map((link, i) => {
+                      if (link.disabled) {
+                        return (
+                          <div
+                            key={i}
+                            className="px-6 py-3 rounded-full flex items-center gap-2 border border-white/10 text-gray-500 cursor-not-allowed bg-white/5"
+                          >
+                            <span className="font-sans text-sm font-medium">
+                              {link.label}
+                            </span>
+                          </div>
+                        );
+                      }
+                      return (
+                        <a
+                          key={i}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`group px-6 py-3 rounded-full flex items-center gap-2 transition-all ${
+                            i === 0 
+                              ? "bg-white text-black hover:bg-[#D4AF37]" 
+                              : "border border-white/20 text-white hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                          }`}
+                        >
+                          <span className="font-sans text-sm font-medium">
+                            {link.label.replace(" ↗", "")}
+                          </span>
+                          <ArrowRight size={16} className={`${i === 0 ? "text-black" : "text-gray-400 group-hover:text-[#D4AF37]"} transition-all`} />
+                        </a>
+                      );
+                    })}
                   </div>
                 )}
               </div>
