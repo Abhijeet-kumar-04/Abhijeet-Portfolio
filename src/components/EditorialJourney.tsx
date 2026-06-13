@@ -17,7 +17,7 @@ export function EditorialJourney() {
               I am a software engineer deeply passionate about building the foundational architecture that powers modern web applications. My journey is rooted in a strong command of C++ and Data Structures, which has shaped my approach to solving complex problems efficiently.
             </p>
             <p>
-              By bridging the gap between scalable backend systems and the emerging frontiers of AI/ML, I aim to create intelligent solutions that don't just function, but truly perform under pressure. My code is my craft—minimalist, secure, and infinitely scalable.
+              By bridging the gap between scalable backend systems and rigorous competitive programming, I aim to create solutions that don't just function, but truly perform under pressure. My code is my craft—minimalist, secure, and infinitely scalable.
             </p>
           </div>
         </div>
@@ -28,16 +28,16 @@ export function EditorialJourney() {
           {/* Top Row: Stats Blocks */}
           <div className="grid grid-cols-3 gap-4">
             <div className="flex flex-col items-center justify-center p-6 bg-white/[0.02] border border-white/5 rounded-[1.5rem] hover:bg-white/[0.04] transition-colors">
-              <span className="text-3xl font-serif text-[#D4AF37] mb-2">56+</span>
-              <span className="text-xs text-gray-500 uppercase tracking-wider text-center">Contributions</span>
+              <span className="text-3xl font-serif text-[#D4AF37] mb-2">800+</span>
+              <span className="text-xs text-gray-500 uppercase tracking-wider text-center">DSA Problems</span>
             </div>
             <div className="flex flex-col items-center justify-center p-6 bg-white/[0.02] border border-white/5 rounded-[1.5rem] hover:bg-white/[0.04] transition-colors">
-              <span className="text-3xl font-serif text-[#D4AF37] mb-2">#1</span>
-              <span className="text-xs text-gray-500 uppercase tracking-wider text-center">TechM Perf.</span>
+              <span className="text-3xl font-serif text-[#D4AF37] mb-2">Pupil</span>
+              <span className="text-xs text-gray-500 uppercase tracking-wider text-center">Codeforces</span>
             </div>
             <div className="flex flex-col items-center justify-center p-6 bg-white/[0.02] border border-white/5 rounded-[1.5rem] hover:bg-white/[0.04] transition-colors">
-              <span className="text-3xl font-serif text-[#D4AF37] mb-2">Reg</span>
-              <span className="text-xs text-gray-500 uppercase tracking-wider text-center">ICPC 2023</span>
+              <span className="text-3xl font-serif text-[#D4AF37] mb-2">8.17</span>
+              <span className="text-xs text-gray-500 uppercase tracking-wider text-center">CGPA</span>
             </div>
           </div>
 
@@ -48,8 +48,8 @@ export function EditorialJourney() {
                 <Code size={20} />
               </div>
               <div>
-                <h4 className="text-white font-serif text-lg mb-1">System Architect</h4>
-                <p className="text-gray-500 text-sm font-sans font-light">Designing reliable, scalable distributed architectures.</p>
+                <h4 className="text-white font-serif text-lg mb-1">Backend Architecture</h4>
+                <p className="text-gray-500 text-sm font-sans font-light">Designing reliable, scalable APIs using Node.js and MongoDB.</p>
               </div>
             </div>
 
@@ -58,8 +58,8 @@ export function EditorialJourney() {
                 <BrainCircuit size={20} />
               </div>
               <div>
-                <h4 className="text-white font-serif text-lg mb-1">AI Explorer</h4>
-                <p className="text-gray-500 text-sm font-sans font-light">Integrating intelligent models into production apps.</p>
+                <h4 className="text-white font-serif text-lg mb-1">Algorithmic Design</h4>
+                <p className="text-gray-500 text-sm font-sans font-light">Mastering advanced data structures to optimize time complexities.</p>
               </div>
             </div>
 
