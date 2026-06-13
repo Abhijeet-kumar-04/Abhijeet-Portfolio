@@ -1,7 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Code2, ExternalLink, Loader2 } from "lucide-react";
+import { Loader2, ExternalLink, Code2 } from "lucide-react";
+
+async function fetchWithTimeout(url: string, timeout = 4000) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    clearTimeout(id);
+    return response;
+  } catch (err) {
+    clearTimeout(id);
+    throw err;
+  }
+}
 import { motion } from "framer-motion";
 
 interface LeetCodeStats {
@@ -39,19 +52,19 @@ export function CodingProfiles() {
       try {
         const username = "Abhijeet_004";
         // Fetch solved stats
-        const solvedRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/solved`);
+        const solvedRes = await fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}/solved`);
         const solvedData = await solvedRes.json();
         
         // Fetch contest stats
-        const contestRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/contest`);
+        const contestRes = await fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}/contest`);
         const contestData = await contestRes.json();
         
         // Fetch badges
-        const badgesRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/badges`);
+        const badgesRes = await fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}/badges`);
         const badgesData = await badgesRes.json();
 
         // Fetch ranking
-        const profileRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}`);
+        const profileRes = await fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}`);
         const profileData = await profileRes.json();
 
         setStats({
@@ -85,10 +98,10 @@ export function CodingProfiles() {
     async function fetchGitHubData() {
       try {
         const username = "Abhijeet-kumar-04";
-        const res = await fetch(`https://api.github.com/users/${username}`);
+        const res = await fetchWithTimeout(`https://api.github.com/users/${username}`);
         const data = await res.json();
         
-        const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+        const reposRes = await fetchWithTimeout(`https://api.github.com/users/${username}/repos?per_page=100`);
         const reposData = await reposRes.json();
         
         const stars = Array.isArray(reposData) ? reposData.reduce((a: number, b: any) => a + (b.stargazers_count || 0), 0) : 0;
@@ -100,14 +113,14 @@ export function CodingProfiles() {
         let commits = 55;
         let contribs = 2;
         try {
-          const statsRes = await fetch(`https://github-readme-stats.vercel.app/api?username=${username}`);
+          const statsRes = await fetchWithTimeout(`https://github-readme-stats.vercel.app/api?username=${username}`);
           const statsSvg = await statsRes.text();
           
           const contribMatch = statsSvg.match(/Contributed to.*?(\d+)/i);
           if (contribMatch) contribs = parseInt(contribMatch[1]);
           
           // Fetch real contributions graph data (matches GitHub profile exactly)
-          const graphRes = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
+          const graphRes = await fetchWithTimeout(`https://github-contributions-api.deno.dev/${username}.json`);
           if (graphRes.ok) {
             const graphData = await graphRes.json();
             if (graphData.totalContributions) commits = graphData.totalContributions;
@@ -117,28 +130,28 @@ export function CodingProfiles() {
         }
         
         setGithubStats({
-          publicRepos: data.public_repos || 0,
-          followers: data.followers || 0,
-          following: data.following || 0,
+          publicRepos: data.public_repos || 10,
+          followers: data.followers || 2,
+          following: data.following || 4,
           publicGists: data.public_gists || 0,
-          totalStars: stars,
-          totalForks: forks,
+          totalStars: stars || 24,
+          totalForks: forks || 1,
           totalCommits: commits,
           contributions: contribs,
-          joinedYear: joined || 2024
+          joinedYear: joined || 2025
         });
       } catch (error) {
         console.error("Error fetching GitHub stats:", error);
         setGithubStats({
-          publicRepos: 0,
-          followers: 0,
-          following: 0,
+          publicRepos: 10,
+          followers: 2,
+          following: 4,
           publicGists: 0,
-          totalStars: 0,
-          totalForks: 0,
-          totalCommits: 55,
+          totalStars: 24,
+          totalForks: 1,
+          totalCommits: 71,
           contributions: 2,
-          joinedYear: 2024
+          joinedYear: 2025
         });
       } finally {
         setGithubLoading(false);
