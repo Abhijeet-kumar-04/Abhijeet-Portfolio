@@ -1,65 +1,67 @@
-import Image from "next/image";
+import { BentoCard } from "@/components/BentoCard";
+import { NeuralNetwork3D } from "@/components/NeuralNetwork3D";
+import { TerminalBio } from "@/components/TerminalBio";
+import { ProjectCard } from "@/components/ProjectCard";
+import { GithubStats } from "@/components/GithubStats";
+import { AchievementsCard } from "@/components/AchievementsCard";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <main className="min-h-screen p-4 md:p-8 flex items-center justify-center relative z-0 overflow-hidden">
+      {/* Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-cyan-900/20 rounded-full blur-[120px] pointer-events-none -z-10 mix-blend-screen" />
+      <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-purple-900/20 rounded-full blur-[100px] pointer-events-none -z-10 mix-blend-screen" />
+
+      <div className="w-full max-w-7xl mx-auto relative">
+        <header className="mb-8 pl-2">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-2 drop-shadow-md">Abhijeet Kumar</h1>
+          <p className="text-[#888888] text-sm md:text-base tracking-[0.2em] uppercase font-medium">AI Control Center</p>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[250px]">
+          
+          {/* 3D Visualizer - Spans 2x2 */}
+          <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 overflow-hidden !p-0 border-cyan-900/30">
+            <NeuralNetwork3D />
+          </BentoCard>
+
+          {/* Terminal Bio - Spans 2x1 */}
+          <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-1 !p-0 overflow-hidden border-gray-700/50">
+            <TerminalBio />
+          </BentoCard>
+
+          {/* Project 1 */}
+          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 border-purple-900/30 hover:border-purple-500/50 transition-colors">
+            <ProjectCard
+              title="Compile-Hire"
+              description="A scalable recruitment platform matching developers with top companies using smart algorithms."
+              techStack={["TypeScript", "Node.js", "Express", "MongoDB"]}
+              link="https://github.com/Abhijeet-kumar-04"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </BentoCard>
+
+          {/* Project 2 */}
+          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 border-blue-900/30 hover:border-blue-500/50 transition-colors">
+            <ProjectCard
+              title="NoteBook"
+              description="A secure and real-time collaborative note-taking application."
+              techStack={["React", "Node.js", "WebSockets", "Redis"]}
+              link="https://github.com/Abhijeet-kumar-04"
+            />
+          </BentoCard>
+
+          {/* GitHub Stats */}
+          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 border-gray-700/50">
+            <GithubStats />
+          </BentoCard>
+
+          {/* Achievements */}
+          <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 border-yellow-900/30">
+            <AchievementsCard />
+          </BentoCard>
+
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
