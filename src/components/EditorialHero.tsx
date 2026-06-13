@@ -1,7 +1,52 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
+
+const ScrambleText = ({ text }: { text: string }) => {
+  const [displayText, setDisplayText] = useState("");
+
+  useEffect(() => {
+    let frameId: number;
+    const chars = "0123456789ABCDEF";
+    const duration = 1500; // 1.5 seconds
+    const startTime = Date.now();
+
+    const update = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const lockedCount = Math.floor(progress * text.length);
+      let scrambled = "";
+
+      for (let i = 0; i < text.length; i++) {
+        if (text[i] === " ") {
+          scrambled += " ";
+        } else if (i < lockedCount) {
+          scrambled += text[i];
+        } else {
+          scrambled += chars[Math.floor(Math.random() * chars.length)];
+        }
+      }
+
+      setDisplayText(scrambled);
+
+      if (progress < 1) {
+        // Run slightly slower than 60fps for a better "glitch" read
+        setTimeout(() => {
+          frameId = requestAnimationFrame(update);
+        }, 30);
+      } else {
+        setDisplayText(text);
+      }
+    };
+
+    frameId = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(frameId);
+  }, [text]);
+
+  return <span>{displayText}</span>;
+};
 
 export function EditorialHero() {
   return (
@@ -29,9 +74,9 @@ export function EditorialHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-extrabold tracking-tight text-white uppercase"
+              className="text-5xl md:text-7xl font-extrabold tracking-tight text-white uppercase font-mono lg:font-sans"
             >
-              Abhijeet Kumar
+              <ScrambleText text="Abhijeet Kumar" />
             </motion.h1>
             
             <motion.div 
