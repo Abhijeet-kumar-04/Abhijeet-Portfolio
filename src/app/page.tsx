@@ -7,6 +7,7 @@ import { RevealWrapper } from "@/components/RevealWrapper";
 import { CodingProfiles } from "@/components/CodingProfiles";
 import { EditorialEducation } from "@/components/EditorialEducation";
 import { EditorialContact } from "@/components/EditorialContact";
+import { EditorialInterests } from "@/components/EditorialInterests";
 
 export default function Home() {
   return (
@@ -49,7 +50,12 @@ export default function Home() {
           <EditorialEducation />
         </RevealWrapper>
 
-        {/* 7. Contact Footer */}
+        {/* 7. Interests & Focus */}
+        <RevealWrapper delay={0.2}>
+          <EditorialInterests />
+        </RevealWrapper>
+
+        {/* 8. Contact Footer */}
         <RevealWrapper delay={0.2}>
           <EditorialContact />
         </RevealWrapper>
