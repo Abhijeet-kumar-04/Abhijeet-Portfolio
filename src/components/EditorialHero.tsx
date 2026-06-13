@@ -141,24 +141,61 @@ export function EditorialHero() {
               />
             </motion.div>
 
-            {/* Terminal Box ("About Me") */}
+            {/* Premium IDE Terminal Box */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="bg-[#111827]/60 backdrop-blur-md border border-white/10 rounded-lg p-6 mt-12 max-w-lg shadow-2xl"
+              className="bg-[#0B0F19]/80 backdrop-blur-md border border-white/10 rounded-lg mt-12 max-w-lg shadow-2xl overflow-hidden font-mono text-sm leading-relaxed"
             >
-              <div className="flex items-center space-x-2 border-b border-white/10 pb-3 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-                <div className="ml-4 text-xs font-mono text-gray-500 flex items-center">
-                  <span className="text-teal-400 mr-2">&gt;_</span> abhijeet@about-me:~
+              {/* Window Controls & Tabs */}
+              <div className="flex flex-col bg-black/40 border-b border-white/10">
+                <div className="flex items-center px-4 py-3 space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                </div>
+                {/* File Tabs */}
+                <div className="flex text-xs px-2 pt-1 overflow-x-auto">
+                  <div className="px-4 py-2 border-b-[2px] border-teal-400 text-teal-400 flex items-center bg-white/5 rounded-t-md">
+                    <span className="text-[#fbc02d] mr-2">{"{}"}</span> about.json
+                  </div>
+                  <div className="px-4 py-2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer flex items-center">
+                    <span className="text-blue-400 mr-2">TS</span> skills.ts
+                  </div>
+                  <div className="px-4 py-2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer flex items-center">
+                    <span className="text-green-400 mr-2">$_</span> experience.sh
+                  </div>
                 </div>
               </div>
-              <p className="font-mono text-gray-400 text-sm md:text-base leading-relaxed">
-                Pursuing B.Tech in CSE at NIT Silchar (Class of 2027). Passionate about building scalable backend architectures and tackling complex algorithmic challenges (800+ DSA problems solved). Focused on C/C++, Node.js, Express, and MongoDB.
-              </p>
+
+              {/* JSON Content Data */}
+              <div className="p-6 text-gray-300">
+                <div><span className="text-gray-500">{"{"}</span></div>
+                
+                <div className="pl-4">
+                  <div><span className="text-teal-400">"developer"</span><span className="text-gray-500">: </span><span className="text-amber-200">"Abhijeet Kumar"</span><span className="text-gray-500">,</span></div>
+                  <div><span className="text-teal-400">"status"</span><span className="text-gray-500">: </span><span className="text-amber-200">"Active / CSE @ NIT Silchar (2027)"</span><span className="text-gray-500">,</span></div>
+                  <div>
+                    <span className="text-teal-400">"specialization"</span><span className="text-gray-500">: [</span>
+                    <span className="text-amber-200">"Backend Architecture"</span><span className="text-gray-500">, </span>
+                    <span className="text-amber-200">"Competitive Programming"</span>
+                    <span className="text-gray-500">],</span>
+                  </div>
+                  <div>
+                    <span className="text-teal-400">"core_stack"</span><span className="text-gray-500">: [</span>
+                    <span className="text-amber-200">"C/C++"</span><span className="text-gray-500">, </span>
+                    <span className="text-amber-200">"JavaScript"</span><span className="text-gray-500">, </span>
+                    <span className="text-amber-200">"Node.js"</span><span className="text-gray-500">, </span>
+                    <span className="text-amber-200">"MongoDB"</span>
+                    <span className="text-gray-500">],</span>
+                  </div>
+                  <div><span className="text-teal-400">"dsa_problems_solved"</span><span className="text-gray-500">: </span><span className="text-indigo-400">800</span><span className="text-gray-500">,</span></div>
+                  <div><span className="text-teal-400">"open_to_opportunities"</span><span className="text-gray-500">: </span><span className="text-indigo-400">true</span></div>
+                </div>
+
+                <div><span className="text-gray-500">{"}"}</span></div>
+              </div>
             </motion.div>
           </div>
 
