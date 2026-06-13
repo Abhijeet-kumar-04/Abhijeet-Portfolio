@@ -1,6 +1,8 @@
 # Abhijeet Kumar | Software Engineer Portfolio
 
-![Portfolio Preview](./public/portrait-2.jpg)
+<p align="center">
+  <img src="public/portrait.jpg" width="250" alt="Abhijeet Kumar Profile Photo" style="border-radius: 20px;">
+</p>
 
 Welcome to the open-source repository for my personal developer portfolio. Built to reflect my passion for high-performance architecture, competitive programming, and immersive design, this portfolio is engineered with zero-error strictness and cutting-edge web technologies.
 
