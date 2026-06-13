@@ -88,75 +88,30 @@ const HackathonVisual = () => (
            <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center"><Terminal size={10} className="text-indigo-300"/></div>
            <div className="h-2 w-1/2 bg-white/20 rounded mt-2"></div>
         </div>
-        <div className="bg-gradient-to-br from-rose-900/40 to-orange-900/40 border border-white/5 rounded-lg p-2 flex flex-col justify-between">
-           <div className="w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center"><Layout size={10} className="text-rose-300"/></div>
-           <div className="h-2 w-2/3 bg-white/20 rounded mt-2"></div>
-        </div>
-        <div className="bg-gradient-to-br from-emerald-900/40 to-teal-900/40 border border-white/5 rounded-lg p-2 flex flex-col justify-between col-span-2">
-           <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center"><Database size={10} className="text-emerald-300"/></div>
-           <div className="h-2 w-1/3 bg-white/20 rounded mt-2"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
-const MusicHubVisual = () => (
-  <div className="relative w-full h-full bg-[#0a0a0a] rounded-[2rem] border border-white/5 overflow-hidden flex items-center justify-center group p-6">
-    {/* Background Glow */}
-    <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 opacity-50"></div>
+const ProjectScreenshot = ({ src, alt }: { src: string, alt: string }) => (
+  <div className="relative w-full h-full bg-[#111] rounded-[2rem] border border-white/10 overflow-hidden flex items-center justify-center group shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+    {/* Subtle Glow Behind Image */}
+    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none"></div>
     
-    {/* Music Player Window */}
-    <div className="relative z-10 w-full h-full bg-[#111] border border-white/10 rounded-xl shadow-2xl transition-transform duration-700 group-hover:scale-105 overflow-hidden flex flex-col">
-      {/* Header */}
-      <div className="h-8 bg-[#1a1a1a] border-b border-white/5 flex items-center px-4 space-x-2">
-        <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
-        <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-        <div className="mx-auto text-gray-500 text-[10px] tracking-widest uppercase">Music Hub</div>
-      </div>
-      
-      {/* Content */}
-      <div className="flex-1 flex p-4 gap-4">
-        {/* Album Art Placeholder */}
-        <div className="w-1/3 aspect-square bg-gradient-to-br from-indigo-500/30 to-purple-600/30 rounded-lg border border-white/10 flex items-center justify-center shadow-inner relative overflow-hidden">
-           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 mix-blend-overlay"></div>
-           <div className="w-12 h-12 rounded-full bg-[#111] border border-white/20 flex items-center justify-center">
-             <div className="w-3 h-3 rounded-full bg-gray-500"></div>
-           </div>
-        </div>
-        
-        {/* Playlist / Controls */}
-        <div className="flex-1 flex flex-col justify-between">
-          <div className="space-y-2">
-            <div className="h-4 w-3/4 bg-white/20 rounded"></div>
-            <div className="h-3 w-1/2 bg-white/10 rounded"></div>
-          </div>
-          
-          <div className="space-y-3 mt-4">
-             {/* Progress Bar */}
-             <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-               <div className="w-1/3 h-full bg-indigo-500 rounded-full"></div>
-             </div>
-             
-             {/* Controls */}
-             <div className="flex items-center justify-between px-4">
-               <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center"><div className="w-2 h-2 bg-gray-400 rotate-180" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 50%)' }}></div></div>
-               <div className="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.5)]"><div className="w-3 h-3 bg-white" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 50%)' }}></div></div>
-               <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center"><div className="w-2 h-2 bg-gray-400" style={{ clipPath: 'polygon(0 0, 0 100%, 100% 50%)' }}></div></div>
-             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <img 
+      src={src} 
+      alt={alt} 
+      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+      onError={(e) => {
+        // Fallback if image not found
+        (e.target as HTMLImageElement).src = `https://placehold.co/800x600/111111/444444?text=Please+Save+${src.replace('/', '')}+in+public+folder`;
+      }}
+    />
   </div>
 );
 
 const getProjectVisual = (title: string) => {
-  if (title === "Compile-Hire") return <CompileHireVisual />;
-  if (title === "Music Hub") return <MusicHubVisual />;
-  if (title === "NoteBook") return <NoteBookVisual />;
-  if (title === "Hackathon-Platform") return <HackathonVisual />;
+  if (title === "Compile-Hire") return <ProjectScreenshot src="/compile-hire.png" alt="Compile-Hire Platform" />;
+  if (title === "Music Hub") return <ProjectScreenshot src="/music-hub.png" alt="Music Hub Platform" />;
+  if (title === "NoteBook") return <ProjectScreenshot src="/notebook.png" alt="NoteBook App" />;
+  if (title === "Hackathon-Platform") return <ProjectScreenshot src="/hackathon.png" alt="Hackathon Platform" />;
   return null;
 };
 
