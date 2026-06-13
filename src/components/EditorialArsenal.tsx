@@ -106,12 +106,12 @@ export function EditorialArsenal() {
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 animate={{
-                  y: isHovered ? -15 : [0, -6, 0],
+                  y: isHovered ? -15 : -8,
                 }}
                 transition={{ 
                   y: isHovered 
                     ? { type: "spring", stiffness: 300, damping: 20 }
-                    : { duration: 4, repeat: Infinity, ease: "easeInOut", delay: (idx % 12) * 0.2 }
+                    : { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: (idx % 12) * 0.15 }
                 }}
               >
                 {/* The Tech Box */}
