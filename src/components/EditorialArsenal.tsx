@@ -91,15 +91,12 @@ export function EditorialArsenal() {
         </h2>
       </div>
 
-      <div className="relative w-full py-20 pl-6 md:pl-12 overflow-hidden" ref={containerRef}>
-        {/* Draggable container to match the "left to right" scrolling request */}
-        <motion.div 
-          className="flex items-center gap-6 md:gap-10 cursor-grab active:cursor-grabbing pr-[30vw] w-max"
-          drag="x"
-          dragConstraints={containerRef}
-          dragElastic={0.1}
+      <div className="relative w-full py-20 overflow-hidden">
+        {/* Infinite CSS Marquee that pauses on hover */}
+        <div 
+          className="flex items-center gap-6 md:gap-10 w-max animate-marquee hover:[animation-play-state:paused] pl-6 md:pl-10"
         >
-          {techStack.map((tech, idx) => {
+          {[...techStack, ...techStack].map((tech, idx) => {
             const isHovered = hoveredIndex === idx;
 
             return (
@@ -114,7 +111,7 @@ export function EditorialArsenal() {
                 transition={{ 
                   y: isHovered 
                     ? { type: "spring", stiffness: 300, damping: 20 }
-                    : { duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }
+                    : { duration: 4, repeat: Infinity, ease: "easeInOut", delay: (idx % 12) * 0.2 }
                 }}
               >
                 {/* The Tech Box */}
@@ -159,14 +156,14 @@ export function EditorialArsenal() {
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
         
         {/* Scroll Instruction Hint */}
         <div className="absolute -bottom-10 left-0 w-full flex justify-center pointer-events-none">
           <span className="text-xs text-gray-600 uppercase tracking-widest flex items-center gap-2">
-            <span className="inline-block animate-pulse">&larr;</span> 
-            Drag to scroll 
-            <span className="inline-block animate-pulse">&rarr;</span>
+            <span className="inline-block animate-pulse">&uarr;</span> 
+            Hover to explore 
+            <span className="inline-block animate-pulse">&uarr;</span>
           </span>
         </div>
 
