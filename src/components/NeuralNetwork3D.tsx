@@ -48,7 +48,7 @@ function NetworkNodes() {
     let colorIndex = 0;
 
     const baseColor = new THREE.Color("#D4AF37"); // Bronze/Gold
-    const highlightColor = new THREE.Color("#2dd4bf"); // Cyan/Teal
+    const highlightColor = new THREE.Color("#FFFFFF"); // White
 
     for (let i = 0; i < particleCount; i++) {
       for (let j = i + 1; j < particleCount; j++) {
@@ -103,7 +103,7 @@ function NetworkNodes() {
             itemSize={3}
           />
         </bufferGeometry>
-        <pointsMaterial size={0.08} color="#2dd4bf" transparent opacity={0.6} sizeAttenuation />
+        <pointsMaterial size={0.08} color="#FFFFFF" transparent opacity={0.6} sizeAttenuation />
       </points>
       <lineSegments ref={linesRef}>
         <bufferGeometry>
