@@ -174,17 +174,26 @@ export function EditorialHero() {
               {/* Ultra-soft ambient glow behind the image */}
               <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/10 to-[#D4AF37]/10 blur-[80px] rounded-full transform -translate-y-4 pointer-events-none"></div>
 
-              {/* The clean image container with a subtle CSS float */}
+              {/* The clean image container with a subtle CSS float & border beam */}
               <motion.div 
                 animate={{ y: [-8, 8, -8] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                className="relative w-[85%] h-[95%] rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/5 z-10 group"
+                className="relative w-[85%] h-[95%] rounded-[18px] p-[1px] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] z-10 group bg-[#0A0A0A]"
               >
-                <img 
-                  src="/portrait-2.jpg" 
-                  alt="Abhijeet Kumar" 
-                  className="w-full h-full object-cover object-top filter brightness-[0.90] contrast-[1.1] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" 
+                {/* Rotating Border Beam */}
+                <div 
+                  className="absolute inset-[-100%] z-0 pointer-events-none animate-[spin_6s_linear_infinite] opacity-50 group-hover:opacity-100 transition-opacity duration-700" 
+                  style={{ background: 'conic-gradient(from 0deg, transparent 75%, rgba(45,212,191,0.4) 95%, rgba(212,175,55,0.4) 100%)' }} 
                 />
+
+                {/* Inner Image Container to hide the center of the conic gradient */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden z-10 bg-black">
+                  <img 
+                    src="/portrait-2.jpg" 
+                    alt="Abhijeet Kumar" 
+                    className="w-full h-full object-cover object-top filter brightness-[0.90] contrast-[1.1] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" 
+                  />
+                </div>
               </motion.div>
 
             </div>
