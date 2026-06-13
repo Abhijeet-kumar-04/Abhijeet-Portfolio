@@ -153,20 +153,33 @@ export function EditorialHero() {
             </motion.div>
           </div>
 
-          {/* Right Column (Idea 4: Liquid Organic Morph Final) */}
+          {/* Right Column (Idea 4: Liquid Organic Morph FINAL with ALL Effects) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 1 }}
             className="w-full lg:w-[45%] flex justify-center lg:justify-end items-center mt-12 lg:mt-0 z-10 perspective-[1000px]"
           >
-            {/* Custom Morph Animation */}
+            {/* Custom Animations */}
             <style>
               {`
                 @keyframes blobMorph {
                   0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
                   50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
                   100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+                }
+                @keyframes glitchFlash {
+                  0% { opacity: 0; }
+                  10% { opacity: 0.8; }
+                  20% { opacity: 0; }
+                  40% { opacity: 0.8; transform: translate(4px, -4px); }
+                  50% { opacity: 0; }
+                  100% { opacity: 0; }
+                }
+                @keyframes auraPulse {
+                  0% { transform: scale(1); opacity: 0.3; }
+                  50% { transform: scale(1.3); opacity: 0.8; }
+                  100% { transform: scale(1); opacity: 0.3; }
                 }
               `}
             </style>
@@ -177,22 +190,50 @@ export function EditorialHero() {
               className="relative aspect-[3/4] max-w-[320px] md:max-w-[380px] w-full bg-transparent flex items-center justify-center group preserve-3d"
             >
               
-              {/* Soft Aura Behind Blob */}
+              {/* Option 4: Overclocked Aura Behind Blob */}
               <div 
-                className="absolute inset-2 bg-teal-500/20 blur-[50px] opacity-60 transition-colors duration-700 group-hover:opacity-100 group-hover:bg-[#D4AF37]/20 translate-z-[-20px]"
+                className="absolute inset-2 bg-teal-500/20 blur-[50px] opacity-60 transition-all duration-700 group-hover:bg-[#D4AF37]/30 translate-z-[-30px] group-hover:scale-125"
                 style={{ animation: 'blobMorph 8s ease-in-out infinite alternate' }}
-              ></div>
+              >
+                {/* Internal pulse ring */}
+                <div className="absolute inset-0 rounded-full border border-[#D4AF37]/0 group-hover:border-[#D4AF37]/50 group-hover:animate-[auraPulse_1.5s_infinite]" />
+              </div>
 
               {/* The Morphing Blob Frame */}
               <div 
-                className="relative w-[90%] h-[90%] overflow-hidden border-2 border-white/10 shadow-[0_0_50px_rgba(45,212,191,0.15)] transition-transform duration-700 group-hover:scale-[1.03] bg-[#0A0A0A] translate-z-10"
+                className="relative w-[90%] h-[90%] overflow-hidden border-2 border-white/10 shadow-[0_0_50px_rgba(45,212,191,0.15)] transition-transform duration-700 group-hover:scale-[1.03] bg-[#0A0A0A] translate-z-10 group-hover:border-[#D4AF37]/40 group-hover:shadow-[0_0_80px_rgba(212,175,55,0.2)]"
                 style={{ animation: 'blobMorph 12s ease-in-out infinite' }}
               >
-                <img 
-                  src="/portrait-2.jpg" 
-                  alt="Abhijeet Kumar" 
-                  className="w-full h-full object-cover object-top grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-105 group-hover:scale-100" 
-                />
+                {/* Option 3: Internal Parallax (Reverse Scale & Translation) */}
+                <div className="w-full h-full transition-transform duration-700 group-hover:scale-110 group-hover:-translate-y-2 group-hover:translate-x-1">
+                  
+                  {/* Base Image */}
+                  <img 
+                    src="/portrait-2.jpg" 
+                    alt="Abhijeet Kumar" 
+                    className="w-full h-full object-cover object-top grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" 
+                  />
+
+                  {/* Option 2: Digital Dissolve Glitch (Red/Cyan) */}
+                  <img 
+                    src="/portrait-2.jpg" 
+                    alt="" 
+                    className="absolute inset-0 w-full h-full object-cover object-top mix-blend-screen -translate-x-2 translate-y-2 opacity-0 group-hover:animate-[glitchFlash_0.5s_ease-out_forwards]"
+                    style={{ filter: "brightness(1) sepia(1) hue-rotate(300deg) saturate(5)" }}
+                  />
+                  <img 
+                    src="/portrait-2.jpg" 
+                    alt="" 
+                    className="absolute inset-0 w-full h-full object-cover object-top mix-blend-screen translate-x-2 -translate-y-2 opacity-0 group-hover:animate-[glitchFlash_0.6s_ease-out_forwards]"
+                    style={{ filter: "brightness(1) sepia(1) hue-rotate(150deg) saturate(5)" }}
+                  />
+                  
+                  {/* Option 1: Liquid Glass Sweep */}
+                  <div className="absolute inset-0 z-30 pointer-events-none">
+                    <div className="absolute top-0 bottom-0 w-[150%] bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] -skew-x-[30deg] transition-transform duration-[1.2s] ease-in-out group-hover:translate-x-[100%]" />
+                  </div>
+
+                </div>
               </div>
 
               {/* Minimal floating accent particles */}
