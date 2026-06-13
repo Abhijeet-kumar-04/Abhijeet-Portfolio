@@ -25,7 +25,7 @@ export default function Home() {
         <Hero />
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] mt-10">
+        <div id="projects" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] mt-10 scroll-mt-24">
           
           {/* Terminal Bio - Spans 2 cols */}
           <RevealWrapper delay={0.1}>

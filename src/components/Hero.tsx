@@ -2,53 +2,68 @@
 
 import React from "react";
 import Typewriter from "typewriter-effect";
-import { portfolioData } from "@/data";
 
 export function Hero() {
   return (
-    <div className="flex flex-col items-center justify-center pt-20 pb-16 text-center relative z-10">
-      {/* Profile Photo with Glowing Ring */}
-      <div className="relative mb-8 group">
-        <div className="absolute inset-0 bg-cyan-400 rounded-full blur-md opacity-70 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 to-blue-500 rounded-full animate-spin-slow" style={{ animationDuration: '4s' }}></div>
-        <div className="relative w-32 h-32 rounded-full bg-gray-900 border-4 border-gray-900 flex items-center justify-center overflow-hidden z-10 m-[2px]">
-          {/* Fallback initials if no photo provided */}
-          <span className="text-4xl font-bold text-gray-500">AK</span>
-          {/* <img src="/profile.png" alt="Profile" className="w-full h-full object-cover" /> */}
+    <section className="relative w-full max-w-6xl mx-auto pt-24 pb-16 px-6 md:px-12 flex flex-col-reverse md:flex-row items-center justify-between gap-12 z-10">
+      
+      {/* Left Side: Text Content */}
+      <div className="flex-1 flex flex-col space-y-6 text-center md:text-left">
+        
+        {/* Name Heading */}
+        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white">
+          Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Abhijeet</span>
+        </h1>
+
+        {/* Typewriter Effect */}
+        <div className="text-xl md:text-3xl font-mono font-medium text-teal-400 h-10">
+          <Typewriter
+            options={{
+              strings: [
+                'A Tech Enthusiast',
+                'A Backend Developer',
+                'An AI/ML Explorer',
+                'A Problem Solver'
+              ],
+              autoStart: true,
+              loop: true,
+              deleteSpeed: 50,
+              delay: 80,
+            }}
+          />
+        </div>
+
+        {/* 4-Line About Me */}
+        <div className="text-gray-400 text-lg leading-relaxed max-w-xl space-y-2 mt-4 text-left">
+          <p>1. Pursuing B.Tech in Computer Science & Engineering at NIT Silchar.</p>
+          <p>2. Passionate about building scalable architectures and intelligent systems.</p>
+          <p>3. Specializing in C++, TypeScript, Node.js, and modern web frameworks.</p>
+          <p>4. Constantly exploring the intersection of robust backend logic and AI.</p>
+        </div>
+
+        {/* Optional Action Buttons */}
+        <div className="pt-4 flex justify-center md:justify-start gap-4">
+           <a href="#projects" className="px-6 py-3 rounded-full bg-teal-500 hover:bg-teal-400 text-black font-semibold transition-all shadow-[0_0_20px_rgba(45,212,191,0.3)]">
+             View My Work
+           </a>
         </div>
       </div>
 
-      {/* Headlines */}
-      <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-4 drop-shadow-lg">
-        {portfolioData.personalInfo.name}
-      </h1>
-      
-      <div className="h-8 text-xl md:text-2xl font-medium text-cyan-400 mb-8">
-        <Typewriter
-          options={{
-            strings: [
-              portfolioData.personalInfo.subheading,
-            ],
-            autoStart: true,
-            loop: false,
-            delay: 30,
-            cursor: "_",
-          }}
-        />
+      {/* Right Side: Photo Container */}
+      <div className="relative flex-shrink-0 group">
+        {/* Glowing border effect */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-teal-400 to-purple-500 rounded-full blur opacity-40 group-hover:opacity-70 transition duration-1000 group-hover:duration-200"></div>
+        
+        {/* Profile Image Wrapper */}
+        <div className="relative w-56 h-56 md:w-80 md:h-80 rounded-full border-2 border-white/10 bg-gray-900 overflow-hidden shadow-2xl flex items-center justify-center">
+          
+          <div className="text-gray-500 text-2xl font-bold tracking-widest">
+            AK
+          </div>
+
+        </div>
       </div>
 
-      {/* Premium Rainbow Gradient Button */}
-      <a
-        href={portfolioData.personalInfo.resume}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative inline-flex group mt-4"
-      >
-        <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-orange-500 via-cyan-500 to-purple-500 rounded-full blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
-        <button className="relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold text-white transition-all duration-200 bg-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 border border-gray-800">
-          Check CV
-        </button>
-      </a>
-    </div>
+    </section>
   );
 }
