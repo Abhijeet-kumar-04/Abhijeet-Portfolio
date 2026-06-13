@@ -25,11 +25,6 @@ export default function Home() {
           <EditorialJourney />
         </RevealWrapper>
 
-        {/* 2.5 Coding Profiles & Interests */}
-        <RevealWrapper delay={0.2}>
-          <CodingProfiles />
-        </RevealWrapper>
-
         {/* 3. Technical Arsenal */}
         <RevealWrapper delay={0.2}>
           <EditorialArsenal />
@@ -38,6 +33,11 @@ export default function Home() {
         {/* 4. Featured Projects */}
         <RevealWrapper delay={0.2}>
           <EditorialProjects />
+        </RevealWrapper>
+
+        {/* 5. Coding Profiles & Interests */}
+        <RevealWrapper delay={0.2}>
+          <CodingProfiles />
         </RevealWrapper>
       </div>
       
