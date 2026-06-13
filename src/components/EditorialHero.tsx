@@ -84,27 +84,40 @@ export function EditorialHero() {
       
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none z-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 via-transparent to-transparent opacity-30 pointer-events-none z-10"></div>
       
-      {/* Animated Background Ambient Orbs */}
+      {/* High-Tech Blueprint Grid */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(45, 212, 191, 0.15) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(45, 212, 191, 0.15) 1px, transparent 1px)
+          `,
+          backgroundSize: '4rem 4rem',
+          maskImage: 'radial-gradient(circle at 50% 50%, black 0%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(circle at 50% 50%, black 0%, transparent 80%)',
+        }}
+      ></div>
+
+      {/* Animated Background Ambient Orbs (Brighter) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div 
           animate={{ 
-            x: [0, 100, -50, 0], 
-            y: [0, -50, 100, 0],
-            scale: [1, 1.2, 0.8, 1]
+            x: [0, 150, -50, 0], 
+            y: [0, -100, 100, 0],
+            scale: [1, 1.3, 0.8, 1]
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-teal-900/10 blur-[120px]"
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-teal-500/10 blur-[100px]"
         />
         <motion.div 
           animate={{ 
-            x: [0, -100, 50, 0], 
-            y: [0, 100, -50, 0],
-            scale: [1, 0.8, 1.2, 1]
+            x: [0, -150, 100, 0], 
+            y: [0, 150, -100, 0],
+            scale: [1, 0.7, 1.4, 1]
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#D4AF37]/5 blur-[150px]"
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#D4AF37]/10 blur-[120px]"
         />
       </div>
       {/* 1. Glassmorphic Navbar */}
