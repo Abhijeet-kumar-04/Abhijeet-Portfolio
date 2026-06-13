@@ -1,11 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Typewriter from "typewriter-effect";
 import { Terminal } from "lucide-react";
 
 export function TerminalBio() {
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [logs, setLogs] = useState<{ command: string; output: string }[]>([]);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to bottom when new logs are added
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [logs]);
+
+  const handleCommand = (command: string, output: string) => {
+    setLogs((prev) => [...prev, { command, output }]);
+  };
 
   return (
     <div className="flex flex-col h-full w-full font-mono text-sm sm:text-base">
@@ -38,7 +49,7 @@ export function TerminalBio() {
               .pauseFor(300)
               .typeString('> Core_Stack: [C++, TypeScript, Node.js, Express, Next.js]<br/>')
               .pauseFor(500)
-              .typeString('<br/><span class="text-green-400">user@abhijeet:~$</span> System Status: Ready for opportunities.<span class="animate-pulse">_</span>')
+              .typeString('<br/><span class="text-green-400">user@abhijeet:~$</span> System Status: Ready for opportunities.<br/>')
               .callFunction(() => {
                 setIsTypingComplete(true);
               })
@@ -50,6 +61,23 @@ export function TerminalBio() {
           }}
         />
 
+        {/* Render Interactive Logs */}
+        {isTypingComplete && (
+          <div className="mt-2 space-y-2">
+            {logs.map((log, idx) => (
+              <div key={idx}>
+                <div className="text-green-400">user@abhijeet:~$ {log.command}</div>
+                <div className="text-gray-400">{log.output}</div>
+              </div>
+            ))}
+            <div className="text-green-400 flex items-center">
+              user@abhijeet:~$ <span className="animate-pulse ml-1">_</span>
+            </div>
+          </div>
+        )}
+        
+        <div ref={bottomRef} />
+
         {/* Interactive Buttons - fade in after typing */}
         <div
           className={`mt-8 flex flex-wrap gap-3 transition-opacity duration-1000 ${
@@ -60,6 +88,7 @@ export function TerminalBio() {
             href="https://github.com/Abhijeet-kumar-04"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => handleCommand("ping github", "Pinging github.com... Reply from 140.82.113.3: bytes=32 time=14ms TTL=52. Opening profile...")}
             className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-green-400 border border-gray-700 rounded transition-colors text-sm"
           >
             [ping github]
@@ -68,6 +97,7 @@ export function TerminalBio() {
             href="#"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => handleCommand("cat linkedin.md", "Reading linkedin.md... Redirecting to LinkedIn profile...")}
             className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-blue-400 border border-gray-700 rounded transition-colors text-sm"
           >
             [cat linkedin.md]
@@ -76,6 +106,7 @@ export function TerminalBio() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => handleCommand("cat resume.pdf", "Extracting resume.pdf... Initiating download/view...")}
             className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-yellow-400 border border-gray-700 rounded transition-colors text-sm"
           >
             [cat resume.pdf]

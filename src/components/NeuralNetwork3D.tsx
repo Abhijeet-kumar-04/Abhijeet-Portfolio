@@ -2,23 +2,24 @@
 
 import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Sphere, Line, OrbitControls } from "@react-three/drei";
+import { Sphere, Line } from "@react-three/drei";
 import * as THREE from "three";
 
 function NetworkGroup() {
   const groupRef = useRef<THREE.Group>(null);
+  const targetRotation = useRef(new THREE.Euler());
 
   // Generate random nodes
   const { nodes, lines } = useMemo(() => {
-    const numNodes = 40;
+    const numNodes = 60; // Increased for full screen
     const maxDistance = 4;
     const nodesArray: THREE.Vector3[] = [];
     const linesArray: [THREE.Vector3, THREE.Vector3][] = [];
 
-    // Create random nodes
+    // Create random nodes spread out more
     for (let i = 0; i < numNodes; i++) {
-      const x = (Math.random() - 0.5) * 10;
-      const y = (Math.random() - 0.5) * 10;
+      const x = (Math.random() - 0.5) * 20;
+      const y = (Math.random() - 0.5) * 20;
       const z = (Math.random() - 0.5) * 10;
       nodesArray.push(new THREE.Vector3(x, y, z));
     }
@@ -37,8 +38,17 @@ function NetworkGroup() {
 
   useFrame((state, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.1;
-      groupRef.current.rotation.x += delta * 0.05;
+      // Base slow rotation
+      groupRef.current.rotation.y += delta * 0.05;
+      groupRef.current.rotation.x += delta * 0.02;
+
+      // Mouse interactive rotation
+      targetRotation.current.y = (state.pointer.x * Math.PI) / 10;
+      targetRotation.current.x = (-state.pointer.y * Math.PI) / 10;
+
+      // Smoothly interpolate towards target rotation
+      groupRef.current.rotation.y += (targetRotation.current.y - groupRef.current.rotation.y) * 0.05;
+      groupRef.current.rotation.x += (targetRotation.current.x - groupRef.current.rotation.x) * 0.05;
     }
   });
 
@@ -52,14 +62,14 @@ function NetworkGroup() {
           color="#a855f7" // Purple-ish
           lineWidth={1}
           transparent
-          opacity={0.3}
+          opacity={0.15} // Softer for background
         />
       ))}
 
       {/* Draw nodes */}
       {nodes.map((node, idx) => (
-        <Sphere key={`node-${idx}`} position={node} args={[0.1, 16, 16]}>
-          <meshStandardMaterial color="#22d3ee" emissive="#06b6d4" emissiveIntensity={0.5} />
+        <Sphere key={`node-${idx}`} position={node} args={[0.08, 16, 16]}>
+          <meshStandardMaterial color="#22d3ee" emissive="#06b6d4" emissiveIntensity={0.5} transparent opacity={0.6} />
         </Sphere>
       ))}
     </group>
@@ -68,17 +78,12 @@ function NetworkGroup() {
 
 export function NeuralNetwork3D() {
   return (
-    <div className="w-full h-full relative min-h-[300px]">
-      <div className="absolute inset-0 z-10 pointer-events-none p-6 flex flex-col justify-end">
-        <h2 className="text-2xl font-bold text-white drop-shadow-md">AI / Backend Systems</h2>
-        <p className="text-gray-300 drop-shadow-sm">Building scalable architectures and intelligent solutions.</p>
-      </div>
+    <div className="fixed inset-0 z-[-20] pointer-events-none">
       <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
         <ambientLight intensity={0.2} />
         <pointLight position={[10, 10, 10]} intensity={1.5} color="#22d3ee" />
         <pointLight position={[-10, -10, -10]} intensity={1} color="#a855f7" />
         <NetworkGroup />
-        <OrbitControls enableZoom={false} autoRotate={false} />
       </Canvas>
     </div>
   );

@@ -4,63 +4,68 @@ import { TerminalBio } from "@/components/TerminalBio";
 import { ProjectCard } from "@/components/ProjectCard";
 import { GithubStats } from "@/components/GithubStats";
 import { AchievementsCard } from "@/components/AchievementsCard";
+import { Hero } from "@/components/Hero";
+import { AcademicTimeline } from "@/components/AcademicTimeline";
+import { portfolioData } from "@/data";
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-4 md:p-8 flex items-center justify-center relative z-0 overflow-hidden">
+    <main className="min-h-screen p-4 md:p-8 flex flex-col items-center justify-start relative z-0 overflow-x-hidden">
+      {/* Full Page 3D Background */}
+      <NeuralNetwork3D />
+
       {/* Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-cyan-900/20 rounded-full blur-[120px] pointer-events-none -z-10 mix-blend-screen" />
-      <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-purple-900/20 rounded-full blur-[100px] pointer-events-none -z-10 mix-blend-screen" />
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-cyan-900/20 rounded-full blur-[120px] pointer-events-none -z-10 mix-blend-screen" />
+      <div className="fixed top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-purple-900/20 rounded-full blur-[100px] pointer-events-none -z-10 mix-blend-screen" />
 
-      <div className="w-full max-w-7xl mx-auto relative">
-        <header className="mb-8 pl-2">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-2 drop-shadow-md">Abhijeet Kumar</h1>
-          <p className="text-[#888888] text-sm md:text-base tracking-[0.2em] uppercase font-medium">AI Control Center</p>
-        </header>
+      <div className="w-full max-w-7xl mx-auto relative z-10">
+        
+        {/* Hero Section */}
+        <Hero />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[250px]">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] mt-10">
           
-          {/* 3D Visualizer - Spans 2x2 */}
-          <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 overflow-hidden !p-0 border-cyan-900/30">
-            <NeuralNetwork3D />
-          </BentoCard>
-
-          {/* Terminal Bio - Spans 2x1 */}
-          <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-1 !p-0 overflow-hidden border-gray-700/50">
+          {/* Terminal Bio - Spans 2 cols */}
+          <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 md:row-span-2 !p-0 overflow-hidden border-gray-700/50">
             <TerminalBio />
           </BentoCard>
 
           {/* Project 1 */}
-          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 border-purple-900/30 hover:border-purple-500/50 transition-colors">
+          <BentoCard className={`col-span-1 border-purple-900/30 transition-colors`}>
             <ProjectCard
-              title="Compile-Hire"
-              description="A scalable recruitment platform matching developers with top companies using smart algorithms."
-              techStack={["TypeScript", "Node.js", "Express", "MongoDB"]}
-              link="https://github.com/Abhijeet-kumar-04"
+              title={portfolioData.projects[0].title}
+              description={portfolioData.projects[0].description}
+              techStack={portfolioData.projects[0].techStack}
+              link={portfolioData.projects[0].link}
             />
           </BentoCard>
 
           {/* Project 2 */}
-          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 border-blue-900/30 hover:border-blue-500/50 transition-colors">
+          <BentoCard className={`col-span-1 border-blue-900/30 transition-colors`}>
             <ProjectCard
-              title="NoteBook"
-              description="A secure and real-time collaborative note-taking application."
-              techStack={["React", "Node.js", "WebSockets", "Redis"]}
-              link="https://github.com/Abhijeet-kumar-04"
+              title={portfolioData.projects[1].title}
+              description={portfolioData.projects[1].description}
+              techStack={portfolioData.projects[1].techStack}
+              link={portfolioData.projects[1].link}
             />
           </BentoCard>
 
           {/* GitHub Stats */}
-          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 border-gray-700/50">
+          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 border-gray-700/50">
             <GithubStats />
           </BentoCard>
 
-          {/* Achievements */}
+          {/* Achievements - Spans 2 cols on md/lg */}
           <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 border-yellow-900/30">
             <AchievementsCard />
           </BentoCard>
 
         </div>
+
+        {/* Academic Timeline Section */}
+        <AcademicTimeline />
+        
       </div>
     </main>
   );
