@@ -3,6 +3,7 @@ export const portfolioData = {
     name: "Abhijeet Kumar",
     title: "AI Control Center",
     role: "Backend Developer & AI Enthusiast",
+    subheading: "AI / Backend Systems - Building scalable architectures and intelligent solutions.",
     github: "https://github.com/Abhijeet-kumar-04",
     linkedin: "#", // Update with actual LinkedIn URL later
     resume: "/resume.pdf",
@@ -10,18 +11,18 @@ export const portfolioData = {
   },
   academicHistory: [
     {
-      institution: "NIT Silchar",
-      degree: "B.Tech in Computer Science and Engineering",
-      duration: "2021 - 2025",
-      description: "Focused on core computer science fundamentals, scalable systems, and artificial intelligence.",
-      logoColor: "bg-blue-500", // Placeholder for actual logo
+      institution: "National Institute of Technology, Silchar",
+      degree: "B.Tech, Computer Science and Engineering",
+      duration: "2023 - 2027",
+      description: "Highlighting participation in ICPC, TechM CODE, and ZS Campus Beats.",
+      logoColor: "bg-blue-500", 
     },
     {
-      institution: "Kendriya Vidyalaya",
+      institution: "Kendriya Vidyalaya Duliajan",
       degree: "High School",
-      duration: "2019 - 2021",
-      description: "Strong foundation in mathematics and sciences.",
-      logoColor: "bg-red-500", // Placeholder for actual logo
+      duration: "Completed July 2022",
+      description: "Grade: 89.6%",
+      logoColor: "bg-red-500",
     },
   ],
   projects: [
@@ -38,32 +39,6 @@ export const portfolioData = {
       techStack: ["React", "Node.js", "WebSockets", "Redis"],
       link: "https://github.com/Abhijeet-kumar-04",
       borderColor: "border-blue-500/50",
-    },
-  ],
-  achievements: [
-    {
-      title: "ICPC Regionalist",
-      description: "Competitive Programming Milestone",
-      date: "2023",
-      iconColor: "text-yellow-500",
-    },
-    {
-      title: "TechM Assessment",
-      description: "Top Performer",
-      date: "2023",
-      iconColor: "text-cyan-400",
-    },
-    {
-      title: "ZS Campus Beats",
-      description: "Finalist",
-      date: "2023",
-      iconColor: "text-purple-400",
-    },
-    {
-      title: "Accenture Hackathon",
-      description: "Innovation Award",
-      date: "2024",
-      iconColor: "text-green-400",
     },
   ],
 };

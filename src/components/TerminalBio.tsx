@@ -43,13 +43,13 @@ export function TerminalBio() {
               .pauseFor(500)
               .typeString('> Compiling background... <span class="text-green-400">[Success]</span><br/>')
               .pauseFor(300)
-              .typeString('> Identity: Backend Developer & AI Enthusiast<br/>')
+              .typeString('> Identity: Backend Developer & AI/ML Enthusiast<br/>')
               .pauseFor(300)
-              .typeString('> Education: CSE @ NIT Silchar<br/>')
+              .typeString('> Education: B.Tech CSE @ NIT Silchar<br/>')
               .pauseFor(300)
-              .typeString('> Core_Stack: [C++, TypeScript, Node.js, Express, Next.js]<br/>')
+              .typeString('> Core_Stack: [C++, DSA, TypeScript, Node.js, Express, React]<br/>')
               .pauseFor(500)
-              .typeString('<br/><span class="text-green-400">user@abhijeet:~$</span> System Status: Ready for opportunities.<br/>')
+              .typeString('<br/><span class="text-green-400">user@abhijeet:~$</span> ')
               .callFunction(() => {
                 setIsTypingComplete(true);
               })

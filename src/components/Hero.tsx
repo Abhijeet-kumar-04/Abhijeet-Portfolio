@@ -27,14 +27,12 @@ export function Hero() {
         <Typewriter
           options={{
             strings: [
-              portfolioData.personalInfo.role,
-              'Scalable Systems Architect',
-              'Open Source Contributor'
+              portfolioData.personalInfo.subheading,
             ],
             autoStart: true,
-            loop: true,
-            delay: 50,
-            deleteSpeed: 30,
+            loop: false,
+            delay: 30,
+            cursor: "_",
           }}
         />
       </div>
@@ -44,10 +42,10 @@ export function Hero() {
         href={portfolioData.personalInfo.resume}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative inline-flex group"
+        className="relative inline-flex group mt-4"
       >
-        <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
-        <button className="relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 border border-gray-800">
+        <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-orange-500 via-cyan-500 to-purple-500 rounded-full blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+        <button className="relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold text-white transition-all duration-200 bg-gray-900 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 border border-gray-800">
           Check CV
         </button>
       </a>

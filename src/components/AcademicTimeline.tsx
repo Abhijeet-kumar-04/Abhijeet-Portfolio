@@ -6,7 +6,7 @@ export function AcademicTimeline() {
     <div className="w-full max-w-4xl mx-auto mt-20 mb-20">
       <h2 className="text-3xl font-extrabold text-white mb-10 text-center tracking-tight">Academic History</h2>
       
-      <div className="relative border-l-2 border-gray-800 ml-4 md:ml-6 space-y-12">
+      <div className="relative border-l-2 border-transparent [border-image:linear-gradient(to_bottom,#d946ef,#a855f7)_1] ml-4 md:ml-6 space-y-12">
         {portfolioData.academicHistory.map((item, index) => (
           <div key={index} className="relative pl-8 md:pl-12 group">
             {/* Timeline Dot/Logo Placeholder */}
