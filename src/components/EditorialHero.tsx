@@ -199,7 +199,7 @@ export function EditorialHero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.8 }}
-        className="mt-auto w-full flex justify-between items-end px-6 md:px-16 pb-8 z-20"
+        className="mt-auto w-full max-w-7xl mx-auto flex justify-between items-end px-6 md:px-12 pb-8 z-20"
       >
         <a 
           href="#projects" 
