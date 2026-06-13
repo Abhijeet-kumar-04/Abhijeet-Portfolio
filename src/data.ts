@@ -44,7 +44,7 @@ export const portfolioData = {
       features: ["Music Uploads", "Interactive Playback", "Dynamic Search", "Secure Authentication"],
       techStack: ["React.js", "Express.js", "MongoDB", "Node.js"],
       links: [
-        { label: "Live Demo ↗", url: "https://music-hub-demo.vercel.app/" },
+        { label: "Live Demo ↗", url: "https://music-hub-spy9.onrender.com/" },
         { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04/Music-Hub" },
       ]
     },
