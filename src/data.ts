@@ -16,7 +16,8 @@ export const portfolioData = {
       duration: "July 2023 - June 2027",
       description: "Focusing on core computer science principles, advanced data structures, and algorithms while exploring interests in full-stack web development.",
       grade: "CGPA: 8.17",
-      location: "Assam, India"
+      location: "Assam, India",
+      logo: "/nit-logo.png"
     },
     {
       institution: "Nirmala Convent High School",
@@ -24,7 +25,8 @@ export const portfolioData = {
       duration: "July 2021 - June 2022",
       description: "Completed higher secondary education with a strong focus on science and mathematics, building a solid foundation for engineering.",
       grade: "Percentage: 92.2%",
-      location: "Uttar Pradesh, India"
+      location: "Uttar Pradesh, India",
+      logo: "/ncs-logo.png"
     },
     {
       institution: "Nirmala Convent High School",
@@ -32,7 +34,8 @@ export const portfolioData = {
       duration: "July 2019 - June 2020",
       description: "Completed secondary education with distinction.",
       grade: "Percentage: 89.4%",
-      location: "Uttar Pradesh, India"
+      location: "Uttar Pradesh, India",
+      logo: "/ncs-logo.png"
     },
   ],
   projects: [
