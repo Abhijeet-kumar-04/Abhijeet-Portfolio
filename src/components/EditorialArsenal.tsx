@@ -96,7 +96,7 @@ export function EditorialArsenal() {
 
       <div className="relative w-full py-20 overflow-visible" ref={containerRef}>
         <motion.div 
-          className="flex items-center gap-6 md:gap-10 cursor-grab active:cursor-grabbing w-max pr-[30vw] pl-6 md:pl-10"
+          className="flex items-center gap-6 md:gap-10 cursor-grab active:cursor-grabbing w-max pr-[30vw] pl-12 lg:pl-48"
           drag="x"
           dragConstraints={containerRef}
           dragElastic={0.05}
