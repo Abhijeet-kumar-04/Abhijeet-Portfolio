@@ -54,8 +54,8 @@ export function EditorialEducation() {
                       
                       {/* School Logo */}
                       <div className="hidden sm:flex flex-shrink-0 w-14 h-14 rounded-full bg-white flex-items-center justify-center border-2 border-[#D4AF37]/30 overflow-hidden relative shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                         {(edu as any).logo ? (
-                           <img src={(edu as any).logo} alt={edu.institution} className="w-full h-full object-contain p-1.5" />
+                         {(edu as { logo?: string }).logo ? (
+                           <img src={(edu as { logo?: string }).logo} alt={edu.institution} className="w-full h-full object-contain p-1.5" />
                          ) : (
                            <div className="absolute inset-0 flex items-center justify-center text-black font-bold text-xl font-serif bg-gradient-to-br from-gray-200 to-gray-400">
                              {edu.institution.charAt(0)}

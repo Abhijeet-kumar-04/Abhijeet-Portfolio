@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Typewriter from "typewriter-effect";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { NeuralNetwork3D } from "./NeuralNetwork3D";
 import { portfolioData } from "@/data";
 
@@ -55,13 +55,7 @@ export function EditorialHero() {
   const mouseY = useMotionValue(0);
   const [activeTab, setActiveTab] = useState<"about" | "skills">("about");
 
-  const springConfig = { damping: 25, stiffness: 150 };
-  const smoothMouseX = useSpring(mouseX, springConfig);
-  const smoothMouseY = useSpring(mouseY, springConfig);
 
-  // Parallax tilt for the right column portrait area
-  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [15, -15]);
-  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-15, 15]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     if (!containerRef.current) return;

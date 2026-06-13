@@ -43,7 +43,7 @@ function NetworkNodes() {
     }
 
     return { particles, originalPositions, positions, colors };
-  }, [particleCount]);
+  }, []);
 
   const timeRef = useRef(0);
 

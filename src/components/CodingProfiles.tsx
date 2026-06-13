@@ -104,14 +104,14 @@ export function CodingProfiles() {
         const reposRes = await fetchWithTimeout(`https://api.github.com/users/${username}/repos?per_page=100`);
         const reposData = await reposRes.json();
         
-        const stars = Array.isArray(reposData) ? reposData.reduce((a: number, b: any) => a + (b.stargazers_count || 0), 0) : 0;
-        const forks = Array.isArray(reposData) ? reposData.reduce((a: number, b: any) => a + (b.forks_count || 0), 0) : 0;
+        const stars = Array.isArray(reposData) ? reposData.reduce((a: number, b: { stargazers_count?: number }) => a + (b.stargazers_count || 0), 0) : 0;
+        const forks = Array.isArray(reposData) ? reposData.reduce((a: number, b: { forks_count?: number }) => a + (b.forks_count || 0), 0) : 0;
         
         const joined = new Date(data.created_at).getFullYear();
         
         // Fetch absolute all-time Total Contributions (Commits + PRs + Issues)
         let commits = 91; // Fallback
-        let contribs = 2; // Fixed projects backed count
+        const contribs = 2; // Fixed projects backed count
         try {
           const contribRes = await fetchWithTimeout(
             `https://github-contributions.vercel.app/api/v1/${username}`
@@ -119,10 +119,10 @@ export function CodingProfiles() {
           if (contribRes.ok) {
             const contribData = await contribRes.json();
             if (contribData.years && Array.isArray(contribData.years)) {
-              commits = contribData.years.reduce((sum: number, year: any) => sum + (year.total || 0), 0);
+              commits = contribData.years.reduce((sum: number, year: { total?: number }) => sum + (year.total || 0), 0);
             }
           }
-        } catch (e) {
+        } catch {
           // Silent fallback
         }
         

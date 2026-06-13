@@ -1,6 +1,6 @@
 import React from "react";
 import { portfolioData } from "@/data";
-import { ArrowRight, CheckCircle2, Layout, Database, Terminal, Shield, Lock, Search } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 const ProjectScreenshot = ({ src, alt }: { src: string, alt: string }) => (
   <div className="relative w-full h-full rounded-[2rem] p-[1px] md:p-[2px] group overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)]">
