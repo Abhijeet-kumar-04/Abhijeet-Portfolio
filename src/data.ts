@@ -7,7 +7,7 @@ export const portfolioData = {
     github: "https://github.com/Abhijeet-kumar-04",
     linkedin: "https://www.linkedin.com/in/abhijeet-kumar-2a280b2a3",
     resume: "/resume.pdf",
-    email: "abhijeet@example.com", // Update with actual email
+    email: "abhijeetkumar111000@gmail.com",
   },
   academicHistory: [
     {
