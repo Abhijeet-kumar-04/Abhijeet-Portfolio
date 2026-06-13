@@ -72,10 +72,10 @@ export function CodingProfiles() {
 
   return (
     <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
-      <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8">
+      <div className="flex flex-col space-y-12">
         
-        {/* Left Column: Coding Profiles */}
-        <div className="flex flex-col space-y-6">
+        {/* Full-Width: Coding Profiles */}
+        <div className="flex flex-col space-y-6 w-full">
           <div className="flex items-center space-x-3 mb-2">
             <div className="p-2 rounded-full border border-white/10 bg-white/5 text-[#D4AF37]">
               <Code2 size={20} />
@@ -83,10 +83,10 @@ export function CodingProfiles() {
             <h2 className="font-serif text-2xl md:text-3xl text-[#D4AF37]">Coding Profiles</h2>
           </div>
 
-          {/* LeetCode Card */}
-          <div className="bg-[#0f0f0f]/80 backdrop-blur-md border border-white/5 rounded-3xl p-6 md:p-8 hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden group h-full">
+          {/* Massive LeetCode Card */}
+          <div className="bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.8)] hover:border-white/10 hover:bg-[#0f0f0f]/90 transition-all duration-700 relative overflow-hidden group w-full">
             {/* Soft background glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/5 blur-[100px] pointer-events-none rounded-full"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[3rem]"></div>
             
             <div className="flex justify-between items-start mb-8 relative z-10">
               <div className="flex items-center space-x-4">
@@ -125,30 +125,30 @@ export function CodingProfiles() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 relative z-10">
-                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                    <span className="text-lg font-bold text-white">{stats?.contestRating}</span>
-                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Contest Rating</span>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 relative z-10">
+                  <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
+                    <span className="text-xl md:text-2xl font-bold text-white">{stats?.contestRating}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Contest Rating</span>
                   </div>
-                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                    <span className="text-lg font-bold text-white">{stats?.topRanking}%</span>
-                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Top Ranking</span>
+                  <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
+                    <span className="text-xl md:text-2xl font-bold text-white">{stats?.topRanking}%</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Top Ranking</span>
                   </div>
-                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                    <span className="text-lg font-bold text-teal-400">{stats?.easySolved}</span>
-                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Easy</span>
+                  <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
+                    <span className="text-xl md:text-2xl font-bold text-teal-400">{stats?.easySolved}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Easy</span>
                   </div>
-                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                    <span className="text-lg font-bold text-yellow-500">{stats?.mediumSolved}</span>
-                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Medium</span>
+                  <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
+                    <span className="text-xl md:text-2xl font-bold text-yellow-500">{stats?.mediumSolved}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Medium</span>
                   </div>
-                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                    <span className="text-lg font-bold text-red-500">{stats?.hardSolved}</span>
-                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Hard</span>
+                  <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
+                    <span className="text-xl md:text-2xl font-bold text-red-500">{stats?.hardSolved}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Hard</span>
                   </div>
-                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                    <span className="text-lg font-bold text-white">{stats?.globalRanking?.toLocaleString()}</span>
-                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Global Rank</span>
+                  <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
+                    <span className="text-xl md:text-2xl font-bold text-white">{stats?.globalRanking?.toLocaleString()}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Global Rank</span>
                   </div>
                 </div>
               </motion.div>
@@ -156,26 +156,28 @@ export function CodingProfiles() {
           </div>
         </div>
 
-        {/* Right Column: Interests & Focus */}
-        <div className="flex flex-col">
-          <div className="bg-[#0f0f0f]/80 backdrop-blur-md border border-white/5 rounded-3xl p-6 md:p-8 hover:border-white/10 transition-colors shadow-2xl relative h-full">
-            <div className="flex items-center space-x-3 mb-10">
+        {/* Full-Width: Interests & Focus */}
+        <div className="flex flex-col w-full">
+          <div className="bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.8)] hover:border-white/10 hover:bg-[#0f0f0f]/90 transition-all duration-700 relative overflow-hidden group w-full">
+            <div className="absolute inset-0 bg-gradient-to-tl from-[#D4AF37]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[3rem]"></div>
+            
+            <div className="flex items-center space-x-3 mb-10 relative z-10">
               <div className="p-2 rounded-full border border-white/10 bg-white/5 text-gray-300">
                 <Sparkles size={20} />
               </div>
-              <h2 className="font-serif text-2xl text-white">Interests & Focus</h2>
+              <h2 className="font-serif text-2xl md:text-3xl text-white">Interests & Focus</h2>
             </div>
 
-            <div className="space-y-10">
+            <div className="flex flex-col md:flex-row gap-12 relative z-10">
               {/* Areas of Interest */}
-              <div>
+              <div className="flex-1">
                 <div className="flex items-center gap-2 mb-4 text-gray-400">
                   <Database size={16} className="text-[#D4AF37]" />
                   <span className="text-xs uppercase tracking-widest font-bold">Areas of Interest</span>
                 </div>
                 <div className="flex flex-wrap gap-3">
                   {["Full Stack Development", "Cloud Computing", "DevOps", "Scalable Systems"].map((tag, i) => (
-                    <div key={i} className="px-4 py-2 rounded-full border border-white/10 bg-black/40 text-gray-300 text-sm hover:border-white/20 transition-colors cursor-default">
+                    <div key={i} className="px-5 py-3 rounded-full border border-white/10 bg-black/40 text-gray-300 text-sm hover:border-white/20 transition-colors cursor-default">
                       {tag}
                     </div>
                   ))}
@@ -183,14 +185,14 @@ export function CodingProfiles() {
               </div>
 
               {/* Currently Exploring */}
-              <div>
+              <div className="flex-1">
                 <div className="flex items-center gap-2 mb-4 text-gray-400">
                   <Cloud size={16} className="text-[#D4AF37]" />
                   <span className="text-xs uppercase tracking-widest font-bold">Currently Exploring</span>
                 </div>
                 <div className="flex flex-wrap gap-3">
                   {["Kubernetes", "AWS", "System Design", "Production Architecture"].map((tag, i) => (
-                    <div key={i} className="px-4 py-2 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/5 text-gray-200 text-sm hover:border-[#D4AF37]/40 transition-colors cursor-default flex items-center gap-2">
+                    <div key={i} className="px-5 py-3 rounded-full border border-[#D4AF37]/20 bg-[#D4AF37]/5 text-gray-200 text-sm hover:border-[#D4AF37]/40 transition-colors cursor-default flex items-center gap-2">
                       <span className="text-[#D4AF37] opacity-70">⬡</span>
                       {tag}
                     </div>
