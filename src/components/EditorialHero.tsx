@@ -1,192 +1,137 @@
 "use client";
-import React, { useRef } from "react";
+import React from "react";
 import Typewriter from "typewriter-effect";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 export function EditorialHero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Framer Motion values for mouse tracking
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth springs for tilt effect
-  const springConfig = { damping: 25, stiffness: 150 };
-  const smoothMouseX = useSpring(mouseX, springConfig);
-  const smoothMouseY = useSpring(mouseY, springConfig);
-
-  // Transform mouse values into rotation angles (tilt)
-  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [5, -5]);
-  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-5, 5]);
-
-  // Handle mouse movement over the section
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!containerRef.current) return;
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    
-    // Calculate mouse position relative to the container center (-0.5 to 0.5)
-    const clientX = e.clientX;
-    const clientY = e.clientY;
-    
-    const xPct = (clientX - rect.left) / rect.width - 0.5;
-    const yPct = (clientY - rect.top) / rect.height - 0.5;
-    
-    mouseX.set(xPct);
-    mouseY.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
   return (
-    <section 
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 md:px-12 py-20 bg-black perspective-[1000px]"
-    >
+    <section className="relative min-h-screen flex flex-col bg-[#050505] overflow-hidden">
       
-      {/* Global Mouse Spotlight (Jarvis/Apple effect) */}
-      <motion.div 
-        className="pointer-events-none absolute inset-0 z-10 opacity-30 mix-blend-screen transition-opacity duration-300"
-        style={{
-          background: useTransform(
-            [smoothMouseX, smoothMouseY],
-            ([x, y]) => {
-              // Convert the -0.5 -> 0.5 range back to percentages for the radial gradient
-              const pctX = ((x as number) + 0.5) * 100;
-              const pctY = ((y as number) + 0.5) * 100;
-              return `radial-gradient(800px circle at ${pctX}% ${pctY}%, rgba(212, 175, 55, 0.15), transparent 80%)`;
-            }
-          )
-        }}
-      />
-
-      {/* Integrated Typography & Status */}
-      <div className="relative z-20 w-full max-w-5xl mb-8 flex flex-col items-center pointer-events-none">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white tracking-[0.2em] md:tracking-[0.3em] uppercase text-center animate-pulse drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-          Abhijeet Kumar
-        </h1>
-        <div className="mt-6 text-xs md:text-sm text-gray-500 font-mono tracking-widest flex items-center gap-2">
-          <span className="text-[#D4AF37] animate-pulse">_&gt;</span> abhijeet@control-center:~
+      {/* 1. Glassmorphic Navbar */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-white/5 h-16 flex items-center px-6 md:px-12 justify-between">
+        <div className="text-white font-bold tracking-widest text-lg">A.K.</div>
+        <div className="hidden md:flex space-x-8">
+          <a href="#about" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">About</a>
+          <a href="#skills" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Skills</a>
+          <a href="#projects" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Projects</a>
+          <a href="#contact" className="text-gray-400 hover:text-white transition-colors text-sm font-medium">Contact</a>
         </div>
+      </nav>
+
+      {/* 2. Main Hero Layout */}
+      <div className="flex-1 flex flex-col relative pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto w-full">
+        
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-center lg:items-start flex-1 w-full mt-8 md:mt-16">
+          
+          {/* Left Column (Identity & Terminal) */}
+          <div className="w-full lg:w-[55%] flex flex-col z-10">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-5xl md:text-7xl font-extrabold tracking-tight text-white uppercase"
+            >
+              Abhijeet Kumar
+            </motion.h1>
+            
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-teal-400 font-mono text-xl md:text-2xl mt-4 h-8"
+            >
+              <Typewriter
+                options={{
+                  strings: [
+                    "A Tech Enthusiast",
+                    "A Machine Learning Explorer",
+                    "A Backend Developer",
+                    "A Problem Solver"
+                  ],
+                  autoStart: true,
+                  loop: true,
+                  deleteSpeed: 30,
+                  delay: 50,
+                  cursorClassName: "text-teal-400 animate-pulse"
+                }}
+              />
+            </motion.div>
+
+            {/* Terminal Box ("About Me") */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="bg-[#111827]/60 backdrop-blur-md border border-white/10 rounded-lg p-6 mt-12 max-w-lg shadow-2xl"
+            >
+              <div className="flex items-center space-x-2 border-b border-white/10 pb-3 mb-4">
+                <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                <div className="ml-4 text-xs font-mono text-gray-500 flex items-center">
+                  <span className="text-teal-400 mr-2">&gt;_</span> abhijeet@about-me:~
+                </div>
+              </div>
+              <p className="font-mono text-gray-400 text-sm md:text-base leading-relaxed">
+                Pursuing B.Tech in CSE at NIT Silchar. Passionate about building scalable backend architectures and integrating intelligent AI/ML models. Focused on C++, TypeScript, and Node.js.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Right Column (Portrait Area) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 1 }}
+            className="w-full lg:w-[45%] flex justify-center lg:justify-end items-center mt-12 lg:mt-0 z-10"
+          >
+            <div className="relative aspect-square max-w-[320px] md:max-w-md w-full bg-transparent flex items-center justify-center group">
+              
+              {/* Subtle glowing ring background */}
+              <div className="absolute inset-0 rounded-full border border-teal-500/10 bg-teal-500/5 blur-2xl group-hover:bg-teal-500/10 transition-colors duration-700"></div>
+              
+              {/* High-tech Corner Brackets */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12"></div>
+              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12"></div>
+              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12"></div>
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12"></div>
+              
+              {/* Image Placeholder */}
+              <div className="relative w-[85%] h-[85%] rounded-sm overflow-hidden flex items-center justify-center border border-white/5 backdrop-blur-sm">
+                <span className="font-serif italic text-gray-600 text-sm">Portrait Placeholder</span>
+                {/* <img src="/portrait.png" alt="Abhijeet Kumar" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" /> */}
+              </div>
+
+            </div>
+          </motion.div>
+
+        </div>
+
       </div>
 
-      {/* Central Content Panel (Refined Glassmorphism + 3D Tilt) */}
+      {/* 3. Bottom Action Bar */}
       <motion.div 
-        style={{ rotateX, rotateY }}
-        className="relative z-20 w-full max-w-5xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 md:p-10 shadow-[0_0_50px_rgba(212,175,55,0.05)] flex flex-col lg:flex-row gap-12 items-center justify-between"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.8 }}
+        className="mt-auto w-full flex justify-between items-end px-6 md:px-16 pb-8 z-20"
       >
-        
-        {/* Hover Spotlight specifically for the panel */}
-        <motion.div 
-          className="absolute inset-0 z-0 pointer-events-none rounded-[2rem] opacity-50"
-          style={{
-            background: useTransform(
-              [smoothMouseX, smoothMouseY],
-              ([x, y]) => {
-                const pctX = ((x as number) + 0.5) * 100;
-                const pctY = ((y as number) + 0.5) * 100;
-                return `radial-gradient(600px circle at ${pctX}% ${pctY}%, rgba(255, 255, 255, 0.03), transparent 60%)`;
-              }
-            )
-          }}
-        />
+        <a 
+          href="#projects" 
+          className="text-white text-sm md:text-base font-medium flex items-center gap-2 group hover:text-teal-400 transition-colors"
+        >
+          View Projects 
+          <span className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform inline-block">↗</span>
+          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 group-hover:w-full transition-all duration-300"></span>
+        </a>
 
-        {/* Left Side: Interactive Terminal & Skills */}
-        <div className="w-full lg:w-1/2 flex flex-col space-y-8 relative z-10">
-          
-          {/* Terminal Output */}
-          <div className="font-mono text-sm md:text-base text-gray-300 min-h-[120px] bg-black/60 p-4 rounded-xl border border-white/10 shadow-inner">
-            <Typewriter
-              options={{
-                delay: 40,
-                deleteSpeed: 20,
-                cursor: '█',
-                cursorClassName: 'text-[#D4AF37] animate-pulse',
-              }}
-              onInit={(typewriter) => {
-                typewriter
-                  .typeString('<span class="text-[#D4AF37]">&gt;</span> run activate_profile.sh<br/>')
-                  .pauseFor(300)
-                  .typeString('<span class="text-[#D4AF37]">&gt;</span> Loading modules for user: <span class="text-white">Abhijeet-kumar-04</span><br/>')
-                  .pauseFor(200)
-                  .typeString('<span class="text-[#D4AF37]">&gt;</span> Name: Abhijeet Kumar<br/>')
-                  .pauseFor(200)
-                  .typeString('<span class="text-[#D4AF37]">&gt;</span> Status: <span class="text-white">ACTIVE</span><br/>')
-                  .start();
-              }}
-            />
-          </div>
-
-          {/* Static Technical Details */}
-          <div className="space-y-4 font-mono text-xs md:text-sm">
-            <div className="flex flex-col space-y-1">
-              <span className="text-gray-500">SYSTEM_STATUS:</span>
-              <span className="text-white">Ready for opportunities.</span>
-            </div>
-            <div className="flex flex-col space-y-1">
-              <span className="text-gray-500">CORE_FOCUS:</span>
-              <span className="text-white">Backend, AI/ML, Scalable Systems</span>
-            </div>
-            <div className="flex flex-col space-y-1">
-              <span className="text-gray-500">EDUCATION:</span>
-              <span className="text-white">CSE @ NIT Silchar</span>
-            </div>
-            <div className="flex flex-col space-y-2 mt-4">
-              <span className="text-gray-500">STACK_PILLS:</span>
-              <div className="flex flex-wrap gap-2">
-                {["TypeScript", "Node.js", "C++", "Express", "Next.js"].map((tech, idx) => (
-                  <span key={idx} className="px-3 py-1 bg-white/5 text-white rounded-md border border-white/10 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors cursor-default">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Luxury CTA Button */}
-          <div className="pt-4">
-            <a href="/resume.pdf" target="_blank" className="relative inline-flex group rounded-full p-[1px] transition-all duration-300 hover:scale-105">
-              <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37]/50 via-white/50 to-[#D4AF37]/50 rounded-full blur-sm group-hover:blur-md transition-all duration-500 opacity-70 group-hover:opacity-100"></span>
-              <div className="relative bg-black px-8 py-3 rounded-full border border-white/20 flex items-center gap-2 group-hover:border-[#D4AF37]/50 transition-colors">
-                <span className="font-sans font-medium text-xs tracking-widest uppercase text-white group-hover:text-[#D4AF37] transition-colors">Check CV</span>
-              </div>
-            </a>
-          </div>
-
-        </div>
-
-        {/* Right Side: Premium Portrait Visual */}
-        <div className="w-full lg:w-1/2 flex justify-center relative z-10 pointer-events-none">
-          
-          <div className="relative w-64 h-64 md:w-80 md:h-80 group">
-            {/* Dynamic Glowing Ring - Luxury Gold/White */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-[#D4AF37] to-white/20 rounded-full blur-lg opacity-40 group-hover:opacity-70 transition duration-1000 animate-pulse"></div>
-            
-            {/* Portrait Frame */}
-            <div className="relative w-full h-full rounded-full border border-[#D4AF37]/30 bg-[#0a0a0a] overflow-hidden shadow-[0_0_50px_rgba(212,175,55,0.1)] flex items-center justify-center">
-              <div className="text-[#D4AF37] font-serif italic opacity-50">Portrait Photo</div>
-            </div>
-
-            {/* Technical Overlays */}
-            <div className="absolute top-4 -right-4 bg-black/80 backdrop-blur-md border border-[#D4AF37]/20 px-3 py-1.5 rounded-md flex items-center gap-2 shadow-xl">
-              <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></div>
-              <span className="text-[10px] text-white font-mono tracking-wider">UID: ABH-04</span>
-            </div>
-            
-            <div className="absolute bottom-4 -left-4 bg-black/80 backdrop-blur-md border border-[#D4AF37]/20 px-3 py-1.5 rounded-md flex items-center gap-2 shadow-xl">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse"></div>
-              <span className="text-[10px] text-[#D4AF37] font-mono tracking-wider">STATUS: VERIFIED</span>
-            </div>
-
-          </div>
-
-        </div>
-
+        <a 
+          href="/resume.pdf" 
+          target="_blank"
+          className="bg-[#D4AF37] text-black font-semibold px-8 py-3 rounded-full hover:bg-white hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 shadow-lg text-sm md:text-base"
+        >
+          Check CV
+        </a>
       </motion.div>
 
     </section>
