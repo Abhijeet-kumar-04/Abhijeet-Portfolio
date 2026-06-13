@@ -52,7 +52,7 @@ export function EditorialHero() {
   const containerRef = useRef<HTMLElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const [activeTab, setActiveTab] = useState<"about" | "skills" | "experience">("about");
+  const [activeTab, setActiveTab] = useState<"about" | "skills">("about");
 
   const springConfig = { damping: 25, stiffness: 150 };
   const smoothMouseX = useSpring(mouseX, springConfig);
@@ -170,12 +170,6 @@ export function EditorialHero() {
                   >
                     <span className="text-blue-400 mr-2">TS</span> skills.ts
                   </div>
-                  <div 
-                    onClick={() => setActiveTab("experience")}
-                    className={`px-4 py-2 cursor-pointer flex items-center rounded-t-md transition-colors ${activeTab === "experience" ? "border-b-[2px] border-green-400 text-green-400 bg-white/5" : "text-gray-500 hover:text-gray-300"}`}
-                  >
-                    <span className="text-green-400 mr-2">$_</span> experience.sh
-                  </div>
                 </div>
               </div>
 
@@ -222,23 +216,6 @@ export function EditorialHero() {
                       <div><span className="text-blue-300">competitive_prog</span><span className="text-gray-500">:</span> <span className="text-amber-200">'Codeforces Pupil'</span></div>
                     </div>
                     <div>{'};'}</div>
-                  </motion.div>
-                )}
-
-                {activeTab === "experience" && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
-                    <div className="text-gray-500 italic">#!/bin/bash</div>
-                    <div className="mt-2"><span className="text-green-400">echo</span> <span className="text-amber-200">"Loading Recent Work..."</span></div>
-                    <div className="mt-2 text-gray-400 text-xs md:text-sm">
-                      <span className="text-purple-400">&gt;</span> <span className="font-bold text-white">Music Hub Platform</span>
-                      <br/>
-                      <span className="pl-4 block border-l-2 border-gray-600 mt-1 mb-2">- Engineered hybrid ad-free streaming API</span>
-                      <span className="pl-4 block border-l-2 border-gray-600 mb-2">- Built secure artist portal w/ Multer</span>
-                      
-                      <span className="text-purple-400 mt-2 inline-block">&gt;</span> <span className="font-bold text-white">Event Head @ Gyan Sagar</span>
-                      <br/>
-                      <span className="pl-4 block border-l-2 border-gray-600 mt-1">- Led NIT-CIT Computer Literacy Module</span>
-                    </div>
                   </motion.div>
                 )}
 
