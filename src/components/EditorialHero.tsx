@@ -127,9 +127,9 @@ export function EditorialHero() {
               <Typewriter
                 options={{
                   strings: [
-                    "A Tech Enthusiast",
-                    "A Machine Learning Explorer",
+                    "A Computer Science Student",
                     "A Backend Developer",
+                    "A Competitive Programmer",
                     "A Problem Solver"
                   ],
                   autoStart: true,
@@ -157,7 +157,7 @@ export function EditorialHero() {
                 </div>
               </div>
               <p className="font-mono text-gray-400 text-sm md:text-base leading-relaxed">
-                Pursuing B.Tech in CSE at NIT Silchar. Passionate about building scalable backend architectures and integrating intelligent AI/ML models. Focused on C++, TypeScript, and Node.js.
+                Pursuing B.Tech in CSE at NIT Silchar (Class of 2027). Passionate about building scalable backend architectures and tackling complex algorithmic challenges (800+ DSA problems solved). Focused on C/C++, Node.js, Express, and MongoDB.
               </p>
             </motion.div>
           </div>
