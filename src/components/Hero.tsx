@@ -33,13 +33,6 @@ export function Hero() {
           />
         </div>
 
-        {/* 4-Line About Me */}
-        <div className="text-gray-400 text-lg leading-relaxed max-w-xl space-y-2 mt-4 text-left">
-          <p>1. Pursuing B.Tech in Computer Science & Engineering at NIT Silchar.</p>
-          <p>2. Passionate about building scalable architectures and intelligent systems.</p>
-          <p>3. Specializing in C++, TypeScript, Node.js, and modern web frameworks.</p>
-          <p>4. Constantly exploring the intersection of robust backend logic and AI.</p>
-        </div>
 
         {/* Optional Action Buttons */}
         <div className="pt-4 flex justify-center md:justify-start gap-4">
