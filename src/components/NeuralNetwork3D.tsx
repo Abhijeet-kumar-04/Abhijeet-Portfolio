@@ -45,10 +45,13 @@ function NetworkNodes() {
     return { particles, originalPositions, positions, colors };
   }, [particleCount]);
 
-  useFrame(({ clock }) => {
+  const timeRef = useRef(0);
+
+  useFrame((state, delta) => {
     if (!pointsRef.current || !linesRef.current) return;
 
-    const time = clock.getElapsedTime();
+    timeRef.current += delta;
+    const time = timeRef.current;
     const pos = pointsRef.current.geometry.attributes.position.array as Float32Array;
 
     // Convert mouse (-1 to 1) to 3D world coordinates roughly matching the sphere size
@@ -155,9 +158,7 @@ function NetworkNodes() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={particles.length / 3}
-            array={particles}
-            itemSize={3}
+            args={[particles, 3]}
           />
         </bufferGeometry>
         <pointsMaterial size={0.06} color="#D4AF37" transparent opacity={0.8} sizeAttenuation />
@@ -166,15 +167,11 @@ function NetworkNodes() {
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={positions.length / 3}
-            array={positions}
-            itemSize={3}
+            args={[positions, 3]}
           />
           <bufferAttribute
             attach="attributes-color"
-            count={colors.length / 3}
-            array={colors}
-            itemSize={3}
+            args={[colors, 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial vertexColors transparent opacity={0.25} />
