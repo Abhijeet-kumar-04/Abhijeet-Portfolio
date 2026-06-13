@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Typewriter from "typewriter-effect";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const ScrambleText = ({ text }: { text: string }) => {
   const [displayText, setDisplayText] = useState("");
@@ -32,7 +32,6 @@ const ScrambleText = ({ text }: { text: string }) => {
       setDisplayText(scrambled);
 
       if (progress < 1) {
-        // Run slightly slower than 60fps for a better "glitch" read
         setTimeout(() => {
           frameId = requestAnimationFrame(update);
         }, 30);
@@ -49,8 +48,39 @@ const ScrambleText = ({ text }: { text: string }) => {
 };
 
 export function EditorialHero() {
+  const containerRef = useRef<HTMLElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 150 };
+  const smoothMouseX = useSpring(mouseX, springConfig);
+  const smoothMouseY = useSpring(mouseY, springConfig);
+
+  // Parallax tilt for the right column portrait area
+  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [15, -15]);
+  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-15, 15]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(xPct);
+    mouseY.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
-    <section className="relative min-h-screen flex flex-col bg-[#050505] overflow-hidden">
+    <section 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-screen flex flex-col bg-[#050505] overflow-hidden perspective-[1000px]"
+    >
       
       {/* 1. Glassmorphic Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-white/5 h-16 flex items-center px-6 md:px-12 justify-between">
@@ -123,31 +153,58 @@ export function EditorialHero() {
             </motion.div>
           </div>
 
-          {/* Right Column (Portrait Area) */}
+          {/* Right Column (Portrait Area with 3D Tech Orbit) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 1 }}
-            className="w-full lg:w-[45%] flex justify-center lg:justify-end items-center mt-12 lg:mt-0 z-10"
+            className="w-full lg:w-[45%] flex justify-center lg:justify-end items-center mt-12 lg:mt-0 z-10 perspective-[1000px]"
           >
-            <div className="relative aspect-square max-w-[320px] md:max-w-md w-full bg-transparent flex items-center justify-center group">
+            {/* Parallax Container */}
+            <motion.div 
+              style={{ rotateX, rotateY }}
+              className="relative aspect-square max-w-[320px] md:max-w-md w-full bg-transparent flex items-center justify-center group preserve-3d"
+            >
               
-              {/* Subtle glowing ring background */}
-              <div className="absolute inset-0 rounded-full border border-teal-500/10 bg-teal-500/5 blur-2xl group-hover:bg-teal-500/10 transition-colors duration-700"></div>
+              {/* Subtle glowing ring background (Center) */}
+              <div className="absolute inset-12 rounded-full border border-teal-500/10 bg-teal-500/5 blur-xl transition-colors duration-700"></div>
+
+              {/* 3D Orbit Ring */}
+              <div className="absolute inset-0 rounded-full border border-white/5 animate-[spin_20s_linear_infinite] shadow-[0_0_30px_rgba(45,212,191,0.05)]">
+                
+                {/* Orbiting Icons */}
+                {/* 1. C++ */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#111827] border border-white/10 flex items-center justify-center text-xs font-bold text-blue-400 shadow-[0_0_15px_rgba(96,165,250,0.5)] animate-[spin_20s_linear_infinite_reverse]">
+                  C++
+                </div>
+                {/* 2. TypeScript */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-10 h-10 rounded-full bg-[#111827] border border-white/10 flex items-center justify-center text-[10px] font-bold text-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)] animate-[spin_20s_linear_infinite_reverse]">
+                  TS
+                </div>
+                {/* 3. Node.js */}
+                <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#111827] border border-white/10 flex items-center justify-center text-[10px] font-bold text-green-500 shadow-[0_0_15px_rgba(34,197,94,0.5)] animate-[spin_20s_linear_infinite_reverse]">
+                  Node
+                </div>
+                {/* 4. MongoDB */}
+                <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#111827] border border-white/10 flex items-center justify-center text-[10px] font-bold text-green-600 shadow-[0_0_15px_rgba(22,163,74,0.5)] animate-[spin_20s_linear_infinite_reverse]">
+                  MDB
+                </div>
+
+              </div>
               
-              {/* High-tech Corner Brackets */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12"></div>
-              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12"></div>
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12"></div>
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12"></div>
+              {/* High-tech Corner Brackets (Static framing) */}
+              <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
+              <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
+              <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#D4AF37]/50 transition-all duration-500 group-hover:border-teal-400 group-hover:w-12 group-hover:h-12 translate-z-10"></div>
               
-              {/* Image Placeholder */}
-              <div className="relative w-[85%] h-[85%] rounded-sm overflow-hidden flex items-center justify-center border border-white/5 backdrop-blur-sm">
-                <span className="font-serif italic text-gray-600 text-sm">Portrait Placeholder</span>
+              {/* Image Placeholder / Core */}
+              <div className="relative w-[70%] h-[70%] rounded-full overflow-hidden flex items-center justify-center border border-[#D4AF37]/20 backdrop-blur-md bg-black/40 shadow-[0_0_50px_rgba(212,175,55,0.1)] translate-z-20">
+                <span className="font-serif italic text-gray-500 text-sm">Portrait Core</span>
                 {/* <img src="/portrait.png" alt="Abhijeet Kumar" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" /> */}
               </div>
 
-            </div>
+            </motion.div>
           </motion.div>
 
         </div>
