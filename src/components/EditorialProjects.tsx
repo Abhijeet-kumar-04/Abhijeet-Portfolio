@@ -2,17 +2,21 @@ import React from "react";
 import { portfolioData } from "@/data";
 import { ArrowRight, CheckCircle2, Layout, Database, Terminal, Shield, Lock, Search } from "lucide-react";
 
-// Individual Visual Components for each project
 const ProjectScreenshot = ({ src, alt }: { src: string, alt: string }) => (
-  <div className="relative w-full h-full bg-[#111] rounded-[2rem] border border-white/10 overflow-hidden flex items-center justify-center group shadow-[0_0_40px_rgba(0,0,0,0.5)]">
-    {/* Subtle Glow Behind Image */}
-    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none"></div>
+  <div className="relative w-full h-full rounded-[2rem] p-[1px] md:p-[2px] group overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+    {/* Magic Rotating Border */}
+    <div className="absolute inset-[-100%] animate-[spin_6s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0a0a0a_0%,#D4AF37_50%,#0a0a0a_100%)] opacity-40 group-hover:opacity-100 transition-opacity duration-700"></div>
     
-    <img 
-      src={src} 
-      alt={alt} 
-      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-    />
+    {/* Main Content Box */}
+    <div className="relative w-full h-full bg-[#0a0a0a] rounded-[calc(2rem-2px)] overflow-hidden z-10">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20 pointer-events-none"></div>
+      
+      <img 
+        src={src} 
+        alt={alt} 
+        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+      />
+    </div>
   </div>
 );
 
