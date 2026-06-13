@@ -52,6 +52,7 @@ export function EditorialHero() {
   const containerRef = useRef<HTMLElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const [activeTab, setActiveTab] = useState<"about" | "skills" | "experience">("about");
 
   const springConfig = { damping: 25, stiffness: 150 };
   const smoothMouseX = useSpring(mouseX, springConfig);
@@ -156,45 +157,91 @@ export function EditorialHero() {
                   <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                 </div>
                 {/* File Tabs */}
-                <div className="flex text-xs px-2 pt-1 overflow-x-auto">
-                  <div className="px-4 py-2 border-b-[2px] border-teal-400 text-teal-400 flex items-center bg-white/5 rounded-t-md">
+                <div className="flex text-xs px-2 pt-1 overflow-x-auto hide-scrollbar select-none">
+                  <div 
+                    onClick={() => setActiveTab("about")}
+                    className={`px-4 py-2 cursor-pointer flex items-center rounded-t-md transition-colors ${activeTab === "about" ? "border-b-[2px] border-teal-400 text-teal-400 bg-white/5" : "text-gray-500 hover:text-gray-300"}`}
+                  >
                     <span className="text-[#fbc02d] mr-2">{"{}"}</span> about.json
                   </div>
-                  <div className="px-4 py-2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer flex items-center">
+                  <div 
+                    onClick={() => setActiveTab("skills")}
+                    className={`px-4 py-2 cursor-pointer flex items-center rounded-t-md transition-colors ${activeTab === "skills" ? "border-b-[2px] border-blue-400 text-blue-400 bg-white/5" : "text-gray-500 hover:text-gray-300"}`}
+                  >
                     <span className="text-blue-400 mr-2">TS</span> skills.ts
                   </div>
-                  <div className="px-4 py-2 text-gray-500 hover:text-gray-300 transition-colors cursor-pointer flex items-center">
+                  <div 
+                    onClick={() => setActiveTab("experience")}
+                    className={`px-4 py-2 cursor-pointer flex items-center rounded-t-md transition-colors ${activeTab === "experience" ? "border-b-[2px] border-green-400 text-green-400 bg-white/5" : "text-gray-500 hover:text-gray-300"}`}
+                  >
                     <span className="text-green-400 mr-2">$_</span> experience.sh
                   </div>
                 </div>
               </div>
 
-              {/* JSON Content Data */}
-              <div className="p-6 text-gray-300">
-                <div><span className="text-gray-500">{"{"}</span></div>
+              {/* Dynamic Content Data */}
+              <div className="p-6 text-gray-300 min-h-[260px]">
                 
-                <div className="pl-4">
-                  <div><span className="text-teal-400">"developer"</span><span className="text-gray-500">: </span><span className="text-amber-200">"Abhijeet Kumar"</span><span className="text-gray-500">,</span></div>
-                  <div><span className="text-teal-400">"status"</span><span className="text-gray-500">: </span><span className="text-amber-200">"Active / CSE @ NIT Silchar (2027)"</span><span className="text-gray-500">,</span></div>
-                  <div>
-                    <span className="text-teal-400">"specialization"</span><span className="text-gray-500">: [</span>
-                    <span className="text-amber-200">"Backend Architecture"</span><span className="text-gray-500">, </span>
-                    <span className="text-amber-200">"Competitive Programming"</span>
-                    <span className="text-gray-500">],</span>
-                  </div>
-                  <div>
-                    <span className="text-teal-400">"core_stack"</span><span className="text-gray-500">: [</span>
-                    <span className="text-amber-200">"C/C++"</span><span className="text-gray-500">, </span>
-                    <span className="text-amber-200">"JavaScript"</span><span className="text-gray-500">, </span>
-                    <span className="text-amber-200">"Node.js"</span><span className="text-gray-500">, </span>
-                    <span className="text-amber-200">"MongoDB"</span>
-                    <span className="text-gray-500">],</span>
-                  </div>
-                  <div><span className="text-teal-400">"dsa_problems_solved"</span><span className="text-gray-500">: </span><span className="text-indigo-400">800</span><span className="text-gray-500">,</span></div>
-                  <div><span className="text-teal-400">"open_to_opportunities"</span><span className="text-gray-500">: </span><span className="text-indigo-400">true</span></div>
-                </div>
+                {activeTab === "about" && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+                    <div><span className="text-gray-500">{"{"}</span></div>
+                    
+                    <div className="pl-4">
+                      <div><span className="text-teal-400">"developer"</span><span className="text-gray-500">: </span><span className="text-amber-200">"Abhijeet Kumar"</span><span className="text-gray-500">,</span></div>
+                      <div><span className="text-teal-400">"status"</span><span className="text-gray-500">: </span><span className="text-amber-200">"Active / CSE @ NIT Silchar (2027)"</span><span className="text-gray-500">,</span></div>
+                      <div>
+                        <span className="text-teal-400">"specialization"</span><span className="text-gray-500">: [</span>
+                        <span className="text-amber-200">"Backend Architecture"</span><span className="text-gray-500">, </span>
+                        <span className="text-amber-200">"Competitive Programming"</span>
+                        <span className="text-gray-500">],</span>
+                      </div>
+                      <div>
+                        <span className="text-teal-400">"core_stack"</span><span className="text-gray-500">: [</span>
+                        <span className="text-amber-200">"C/C++"</span><span className="text-gray-500">, </span>
+                        <span className="text-amber-200">"JavaScript"</span><span className="text-gray-500">, </span>
+                        <span className="text-amber-200">"Node.js"</span><span className="text-gray-500">, </span>
+                        <span className="text-amber-200">"MongoDB"</span>
+                        <span className="text-gray-500">],</span>
+                      </div>
+                      <div><span className="text-teal-400">"dsa_problems_solved"</span><span className="text-gray-500">: </span><span className="text-indigo-400">800</span><span className="text-gray-500">,</span></div>
+                      <div><span className="text-teal-400">"open_to_opportunities"</span><span className="text-gray-500">: </span><span className="text-indigo-400">true</span></div>
+                    </div>
 
-                <div><span className="text-gray-500">{"}"}</span></div>
+                    <div><span className="text-gray-500">{"}"}</span></div>
+                  </motion.div>
+                )}
+
+                {activeTab === "skills" && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+                    <div><span className="text-purple-400">export const</span> <span className="text-blue-400">skills</span> <span className="text-gray-500">=</span> {'{'}</div>
+                    <div className="pl-4">
+                      <div><span className="text-blue-300">languages</span><span className="text-gray-500">:</span> [<span className="text-amber-200">'C/C++'</span>, <span className="text-amber-200">'Java'</span>, <span className="text-amber-200">'Python'</span>, <span className="text-amber-200">'JS'</span>, <span className="text-amber-200">'SQL'</span>],</div>
+                      <div><span className="text-blue-300">backend</span><span className="text-gray-500">:</span> [<span className="text-amber-200">'Node.js'</span>, <span className="text-amber-200">'Express'</span>, <span className="text-amber-200">'REST APIs'</span>],</div>
+                      <div><span className="text-blue-300">databases</span><span className="text-gray-500">:</span> [<span className="text-amber-200">'MongoDB'</span>],</div>
+                      <div><span className="text-blue-300">tools</span><span className="text-gray-500">:</span> [<span className="text-amber-200">'Git'</span>, <span className="text-amber-200">'GitHub'</span>, <span className="text-amber-200">'Linux'</span>, <span className="text-amber-200">'Postman'</span>],</div>
+                      <div><span className="text-blue-300">competitive_prog</span><span className="text-gray-500">:</span> <span className="text-amber-200">'Codeforces Pupil'</span></div>
+                    </div>
+                    <div>{'};'}</div>
+                  </motion.div>
+                )}
+
+                {activeTab === "experience" && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+                    <div className="text-gray-500 italic">#!/bin/bash</div>
+                    <div className="mt-2"><span className="text-green-400">echo</span> <span className="text-amber-200">"Loading Recent Work..."</span></div>
+                    <div className="mt-2 text-gray-400 text-xs md:text-sm">
+                      <span className="text-purple-400">&gt;</span> <span className="font-bold text-white">Music Hub Platform</span>
+                      <br/>
+                      <span className="pl-4 block border-l-2 border-gray-600 mt-1 mb-2">- Engineered hybrid ad-free streaming API</span>
+                      <span className="pl-4 block border-l-2 border-gray-600 mb-2">- Built secure artist portal w/ Multer</span>
+                      
+                      <span className="text-purple-400 mt-2 inline-block">&gt;</span> <span className="font-bold text-white">Event Head @ Gyan Sagar</span>
+                      <br/>
+                      <span className="pl-4 block border-l-2 border-gray-600 mt-1">- Led NIT-CIT Computer Literacy Module</span>
+                    </div>
+                  </motion.div>
+                )}
+
               </div>
             </motion.div>
           </div>
