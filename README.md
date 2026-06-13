@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Abhijeet Kumar | Software Engineer Portfolio
 
-## Getting Started
+![Portfolio Preview](./public/portrait-2.jpg)
 
-First, run the development server:
+Welcome to the open-source repository for my personal developer portfolio. Built to reflect my passion for high-performance architecture, competitive programming, and immersive design, this portfolio is engineered with zero-error strictness and cutting-edge web technologies.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌟 Live Demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**[abhijeetkumar.com](https://abhijeet-portfolio.vercel.app/)** *(Replace with your actual Vercel link once deployed!)*
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Features
 
-## Learn More
+This is not a standard template. This portfolio is a bespoke application built from the ground up to showcase both frontend aesthetics and backend logic:
 
-To learn more about Next.js, take a look at the following resources:
+- **Immersive 3D Architecture:** Features a fully interactive, reactive 3D Neural Network background powered by `Three.js` and `React Three Fiber`.
+- **Live Data Integration:** 
+  - **LeetCode:** Fetches real-time competitive programming statistics (solved problems, global ranking, badges) using the Alfa LeetCode API.
+  - **GitHub:** Directly parses live GitHub contributions and accurately tracks open-source commits dynamically.
+- **Scroll-Linked Animations:** Smooth, 60fps parallax animations and reveal interactions powered by `Framer Motion`.
+- **Editorial Aesthetic:** A minimalist, premium gold and deep-black color palette inspired by high-end typography and modern design trends.
+- **Zero-Error Engineering:** Configured with absolute strict `TypeScript` constraints and zero React linter warnings.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Technology Stack
 
-## Deploy on Vercel
+**Core:**
+- [Next.js (App Router)](https://nextjs.org/)
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Styling & Animation:**
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Three.js](https://threejs.org/) & [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber)
+- [Lucide Icons](https://lucide.dev/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 💻 Running Locally
+
+To run this project on your local machine:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Abhijeet-kumar-04/Abhijeet-Portfolio.git
+   cd Abhijeet-Portfolio
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **View the application:**
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 📁 Project Structure
+
+- `/src/app` - Next.js routing, global layouts, and main page structure.
+- `/src/components` - Modular, highly reusable UI components (Hero, 3D Neural Network, Live Stats Cards, Journey, Projects).
+- `/src/data.ts` - Centralized data configuration. All portfolio text, projects, and links are managed here for easy updates.
+- `/public` - Static assets, images, and logos.
+
+---
+
+## 📬 Connect With Me
+
+I am actively open to Software Engineering, Backend Architecture, and Full Stack Development opportunities. Let's build something incredible.
+
+- **GitHub:** [@Abhijeet-kumar-04](https://github.com/Abhijeet-kumar-04)
+- **LinkedIn:** [Abhijeet Kumar](https://linkedin.com/in/abhijeet-kumar-04)
+- **LeetCode:** [Abhijeetkumar04](https://leetcode.com/u/Abhijeetkumar04/)
+
+---
+*Crafted with precision. Engineered for performance.*
