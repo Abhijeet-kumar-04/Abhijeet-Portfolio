@@ -2,12 +2,11 @@
 
 @theme {
   --font-sans: var(--font-inter);
-  --font-serif: var(--font-cormorant-garamond);
 }
 
 :root {
-  --background: #000000;
-  --foreground: #ededed;
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
 }
 
 body {
@@ -16,28 +15,27 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Custom Scrollbar for Terminal */
+/* Custom Scrollbar for a premium feel */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  background: #0A0A0A;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: #1f2937;
   border-radius: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #374151;
 }
 
 @layer utilities {
   .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(17, 24, 39, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 }
