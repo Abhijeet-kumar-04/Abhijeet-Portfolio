@@ -34,6 +34,9 @@ export function EditorialProjects() {
       <div className="mb-24 text-center md:text-left">
         <h2 className="font-serif text-4xl md:text-5xl text-white">
           Curated <span className="text-[#D4AF37] italic">Projects</span>
+        </h2>
+      </div>
+
       <div className="flex flex-col">
         {portfolioData.projects.map((project, idx) => {
           const isEven = idx % 2 === 0;
