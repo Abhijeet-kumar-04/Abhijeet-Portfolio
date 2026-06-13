@@ -91,15 +91,13 @@ export function EditorialArsenal() {
         </h2>
       </div>
 
-      <div className="relative w-full py-20 pl-6 md:pl-12 overflow-visible">
+      <div className="relative w-full py-20 pl-6 md:pl-12 overflow-hidden" ref={containerRef}>
         {/* Draggable container to match the "left to right" scrolling request */}
         <motion.div 
-          ref={containerRef}
-          className="flex items-center gap-6 md:gap-10 cursor-grab active:cursor-grabbing pr-[30vw]"
+          className="flex items-center gap-6 md:gap-10 cursor-grab active:cursor-grabbing pr-[30vw] w-max"
           drag="x"
-          dragConstraints={{ left: -1200, right: 0 }}
-          dragElastic={0.2}
-          dragTransition={{ bounceStiffness: 100, bounceDamping: 20 }}
+          dragConstraints={containerRef}
+          dragElastic={0.1}
         >
           {techStack.map((tech, idx) => {
             const isHovered = hoveredIndex === idx;
