@@ -104,9 +104,9 @@ export function EditorialHero() {
       </nav>
 
       {/* 2. Main Hero Layout */}
-      <div className="flex-1 flex flex-col relative pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto w-full">
+      <div className="flex-1 flex flex-col relative pt-24 pb-8 px-6 md:px-12 max-w-7xl mx-auto w-full">
         
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-center lg:items-start flex-1 w-full mt-8 md:mt-16">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-center lg:items-start flex-1 w-full mt-4 md:mt-8">
           
           {/* Left Column (Identity & Terminal) */}
           <div className="w-full lg:w-[55%] flex flex-col z-10">
@@ -269,21 +269,20 @@ export function EditorialHero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.8 }}
-        className="mt-auto w-full max-w-7xl mx-auto flex justify-between items-end px-6 md:px-12 pb-8 z-20"
+        className="mt-auto w-full max-w-7xl mx-auto flex justify-between items-center px-6 md:px-12 pb-8 z-20"
       >
         <a 
           href="#projects" 
-          className="text-white text-sm md:text-base font-medium flex items-center gap-2 group hover:text-teal-400 transition-colors"
+          className="px-8 py-3 rounded-full border border-teal-500/50 bg-teal-500/10 text-teal-400 font-semibold hover:bg-teal-500 hover:text-black hover:shadow-[0_0_20px_rgba(45,212,191,0.4)] transition-all duration-300 flex items-center gap-2 group text-sm md:text-base"
         >
           View Projects 
           <span className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform inline-block">↗</span>
-          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 group-hover:w-full transition-all duration-300"></span>
         </a>
 
         <a 
           href="/resume.pdf" 
           target="_blank"
-          className="bg-[#D4AF37] text-black font-semibold px-8 py-3 rounded-full hover:bg-white hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 shadow-lg text-sm md:text-base"
+          className="px-8 py-3 rounded-full border border-[#D4AF37]/50 bg-[#D4AF37]/10 text-[#D4AF37] font-semibold hover:bg-[#D4AF37] hover:text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 flex items-center gap-2 group text-sm md:text-base"
         >
           Check CV
         </a>
