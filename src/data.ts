@@ -55,7 +55,7 @@ export const portfolioData = {
       features: ["Real-time Editing", "WebSocket Integration", "Advanced Filtering", "Caching Layer"],
       techStack: ["React", "Node.js", "WebSockets", "Redis"],
       links: [
-        { label: "Live Demo ↗", url: "https://notebook-app-demo.vercel.app/" },
+        { label: "Live Demo ↗", url: "https://notebook-7qpw.onrender.com/" },
         { label: "GitHub Repo ↗", url: "https://github.com/Abhijeet-kumar-04/NoteBook" },
       ]
     },
