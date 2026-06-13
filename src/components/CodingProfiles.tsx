@@ -111,19 +111,20 @@ export function CodingProfiles() {
         
         // Fetch absolute all-time Total Contributions (Commits + PRs + Issues)
         let commits = 167; // Fallback
-        const contribs = 12; // Fixed projects backed count
+        let contribs = 12; // Fixed projects backed count
         try {
-          const contribRes = await fetchWithTimeout(
-            `https://github-contributions.vercel.app/api/v1/${username}`
-          );
-          if (contribRes.ok) {
-            const contribData = await contribRes.json();
-            if (contribData.years && Array.isArray(contribData.years)) {
-              commits = contribData.years.reduce((sum: number, year: { total?: number }) => sum + (year.total || 0), 0);
+          const customRes = await fetchWithTimeout('/api/github');
+          if (customRes.ok) {
+            const customData = await customRes.json();
+            if (customData.totalContributions) {
+              commits = customData.totalContributions;
+            }
+            if (customData.projectsBacked) {
+              contribs = customData.projectsBacked;
             }
           }
-        } catch {
-          // Silent fallback
+        } catch (error) {
+          console.error("Failed to fetch secure API route", error);
         }
         
         setGithubStats({
