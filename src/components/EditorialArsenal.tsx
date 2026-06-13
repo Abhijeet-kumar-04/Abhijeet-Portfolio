@@ -86,38 +86,38 @@ export function EditorialArsenal() {
     <section className="w-full max-w-screen-xl mx-auto px-6 md:px-12 py-32 border-t border-white/5 overflow-hidden">
       
       <div className="mb-24 text-center md:text-left">
-        <h2 className="font-serif text-4xl md:text-5xl text-white">
+        <h2 className="font-serif text-4xl md:text-5xl text-white mb-4">
           Technical <span className="text-[#D4AF37] italic">Arsenal</span>
         </h2>
+        <p className="text-gray-400 font-light text-lg">
+          The technologies, frameworks, and tools I use to build modern digital experiences.
+        </p>
       </div>
 
-      <div className="relative w-full py-20 overflow-visible">
-        {/* Infinite CSS Marquee that pauses on hover */}
-        <div 
-          className="flex items-center gap-6 md:gap-10 w-max animate-marquee hover:[animation-play-state:paused] pl-6 md:pl-10"
+      <div className="relative w-full py-20 overflow-visible" ref={containerRef}>
+        <motion.div 
+          className="flex items-center gap-6 md:gap-10 cursor-grab active:cursor-grabbing w-max pr-[30vw] pl-6 md:pl-10"
+          drag="x"
+          dragConstraints={containerRef}
+          dragElastic={0.05}
+          dragTransition={{ bounceStiffness: 400, bounceDamping: 40 }}
         >
-          {[...techStack, ...techStack].map((tech, idx) => {
+          {techStack.map((tech, idx) => {
             const isHovered = hoveredIndex === idx;
 
             return (
-              <motion.div
+              <div
                 key={idx}
                 className="relative flex flex-col items-center shrink-0 group"
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                animate={{
-                  y: isHovered ? -15 : -8,
-                }}
-                transition={{ 
-                  y: isHovered 
-                    ? { type: "spring", stiffness: 300, damping: 20 }
-                    : { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: (idx % 12) * 0.15 }
-                }}
               >
                 {/* The Tech Box */}
                 <motion.div
-                  className="w-20 h-20 md:w-24 md:h-24 bg-[#111111] rounded-3xl flex items-center justify-center transition-all duration-300 relative z-10"
+                  className={`w-20 h-20 md:w-24 md:h-24 bg-[#111111] rounded-3xl flex items-center justify-center transition-all duration-300 relative z-10 ${!isHovered ? 'animate-float' : ''}`}
+                  style={{ animationDelay: `${(idx % 12) * 0.2}s` }}
                   animate={{
+                    y: isHovered ? -15 : 0,
                     borderColor: isHovered ? tech.color : "rgba(255,255,255,0.05)",
                     borderWidth: isHovered ? "2px" : "1px",
                     boxShadow: isHovered ? `0 0 40px ${tech.color}40, inset 0 0 20px ${tech.color}10` : "0 0 0px rgba(0,0,0,0)",
@@ -153,17 +153,17 @@ export function EditorialArsenal() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             );
           })}
-        </div>
+        </motion.div>
         
         {/* Scroll Instruction Hint */}
         <div className="absolute -bottom-10 left-0 w-full flex justify-center pointer-events-none">
           <span className="text-xs text-gray-600 uppercase tracking-widest flex items-center gap-2">
-            <span className="inline-block animate-pulse">&uarr;</span> 
-            Hover to explore 
-            <span className="inline-block animate-pulse">&uarr;</span>
+            <span className="inline-block animate-pulse">&larr;</span> 
+            Drag to scroll 
+            <span className="inline-block animate-pulse">&rarr;</span>
           </span>
         </div>
 
