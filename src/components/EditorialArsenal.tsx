@@ -85,13 +85,13 @@ export function EditorialArsenal() {
   return (
     <section className="w-full max-w-screen-xl mx-auto px-6 md:px-12 py-32 border-t border-white/5 overflow-hidden">
       
-      <div className="text-center mb-16">
-        <h2 className="font-serif text-3xl md:text-4xl text-white">
+      <div className="mb-24 text-center md:text-left">
+        <h2 className="font-serif text-4xl md:text-5xl text-white">
           Technical <span className="text-[#D4AF37] italic">Arsenal</span>
         </h2>
       </div>
 
-      <div className="relative w-full py-20 overflow-hidden">
+      <div className="relative w-full py-20 overflow-visible">
         {/* Infinite CSS Marquee that pauses on hover */}
         <div 
           className="flex items-center gap-6 md:gap-10 w-max animate-marquee hover:[animation-play-state:paused] pl-6 md:pl-10"
@@ -139,11 +139,11 @@ export function EditorialArsenal() {
                 <AnimatePresence>
                   {isHovered && (
                     <motion.div
-                      initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                      initial={{ opacity: 0, y: 20, scale: 0.9, x: "-50%" }}
+                      animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+                      exit={{ opacity: 0, y: 10, scale: 0.9, x: "-50%" }}
                       transition={{ duration: 0.2, type: "spring", stiffness: 300, damping: 25 }}
-                      className="absolute bottom-full mb-6 w-64 p-5 bg-[#1a1a1a]/95 backdrop-blur-xl border rounded-2xl pointer-events-none z-50 shadow-2xl"
+                      className="absolute bottom-full left-1/2 mb-6 w-64 p-5 bg-[#1a1a1a]/95 backdrop-blur-xl border rounded-2xl pointer-events-none z-50 shadow-2xl"
                       style={{ borderColor: `${tech.color}30` }}
                     >
                       <h4 className="font-serif text-lg mb-2" style={{ color: tech.color }}>{tech.name}</h4>
