@@ -76,6 +76,36 @@ const techStack = [
     icon: <span className="text-4xl font-mono text-[#facc15]">~/</span>,
     desc: "Core operating system environment for deployment and server management."
   },
+  { 
+    name: "React", 
+    color: "#61dafb",
+    icon: <span className="text-4xl font-bold text-[#61dafb]">Re</span>,
+    desc: "Component-based library for building highly interactive user interfaces."
+  },
+  { 
+    name: "Next.js", 
+    color: "#ffffff",
+    icon: <span className="text-4xl font-black tracking-tighter text-white">N.</span>,
+    desc: "The React framework for production, enabling lightning-fast server-side rendering."
+  },
+  { 
+    name: "TypeScript", 
+    color: "#3178c6",
+    icon: <span className="text-4xl font-bold bg-[#3178c6] text-white px-2 rounded">TS</span>,
+    desc: "Strongly typed programming language that builds on JavaScript for robust, scalable apps."
+  },
+  { 
+    name: "Tailwind CSS", 
+    color: "#38bdf8",
+    icon: <span className="text-4xl font-bold text-[#38bdf8] italic">tw</span>,
+    desc: "Utility-first CSS framework for rapid UI development and stunning, pixel-perfect designs."
+  },
+  { 
+    name: "VS Code", 
+    color: "#007acc",
+    icon: <span className="text-4xl font-serif text-[#007acc]">VS</span>,
+    desc: "Powerful, highly extensible code editor for streamlined and productive development."
+  },
 ];
 
 export function EditorialArsenal() {
