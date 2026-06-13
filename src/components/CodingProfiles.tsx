@@ -165,11 +165,11 @@ export function CodingProfiles() {
         
         {/* Full-Width: Coding Profiles */}
         <div className="flex flex-col space-y-6 w-full">
-          <div className="flex items-center space-x-3 mb-2">
-            <div className="p-2 rounded-full border border-white/10 bg-white/5 text-[#D4AF37]">
-              <Code2 size={20} />
-            </div>
-            <h2 className="font-serif text-2xl md:text-3xl text-[#D4AF37]">Coding Profiles</h2>
+          <div className="text-center relative z-10 mb-10">
+            <h2 className="font-sans font-bold text-4xl md:text-5xl text-white mb-4">
+              Coding <span className="text-[#D4AF37]">Profiles</span>
+            </h2>
+            <p className="text-gray-400 font-light text-lg">My competitive programming and open-source presence.</p>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 w-full">
