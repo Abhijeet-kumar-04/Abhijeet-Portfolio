@@ -1,7 +1,75 @@
-import React from "react";
-import { Code2, ExternalLink, Sparkles, Database, Cloud } from "lucide-react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { Code2, ExternalLink, Sparkles, Database, Cloud, Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
+
+interface LeetCodeStats {
+  solvedProblem: number;
+  easySolved: number;
+  mediumSolved: number;
+  hardSolved: number;
+  contestRating: number;
+  topRanking: number;
+  globalRanking: number;
+  badgeName: string;
+}
 
 export function CodingProfiles() {
+  const [stats, setStats] = useState<LeetCodeStats | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchLeetCodeData() {
+      try {
+        const username = "Abhijeet_004";
+        // Fetch solved stats
+        const solvedRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/solved`);
+        const solvedData = await solvedRes.json();
+        
+        // Fetch contest stats
+        const contestRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/contest`);
+        const contestData = await contestRes.json();
+        
+        // Fetch badges
+        const badgesRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/badges`);
+        const badgesData = await badgesRes.json();
+
+        // Fetch ranking
+        const profileRes = await fetch(`https://alfa-leetcode-api.onrender.com/${username}`);
+        const profileData = await profileRes.json();
+
+        setStats({
+          solvedProblem: solvedData.solvedProblem || 131,
+          easySolved: solvedData.easySolved || 95,
+          mediumSolved: solvedData.mediumSolved || 34,
+          hardSolved: solvedData.hardSolved || 2,
+          contestRating: Math.round(contestData.contestRating || 1414),
+          topRanking: contestData.contestTopPercentage || 78.31,
+          globalRanking: profileData.ranking || 359910,
+          badgeName: badgesData?.activeBadge?.displayName || "SQL Top 50"
+        });
+      } catch (error) {
+        console.error("Error fetching LeetCode stats:", error);
+        // Fallback data
+        setStats({
+          solvedProblem: 131,
+          easySolved: 95,
+          mediumSolved: 34,
+          hardSolved: 2,
+          contestRating: 1414,
+          topRanking: 78.31,
+          globalRanking: 359910,
+          badgeName: "SQL Top 50"
+        });
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchLeetCodeData();
+  }, []);
+
   return (
     <section className="w-full max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
       <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8">
@@ -16,11 +84,11 @@ export function CodingProfiles() {
           </div>
 
           {/* LeetCode Card */}
-          <div className="bg-[#0f0f0f]/80 backdrop-blur-md border border-white/5 rounded-3xl p-6 md:p-8 hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden group">
+          <div className="bg-[#0f0f0f]/80 backdrop-blur-md border border-white/5 rounded-3xl p-6 md:p-8 hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden group h-full">
             {/* Soft background glow */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4AF37]/5 blur-[100px] pointer-events-none rounded-full"></div>
             
-            <div className="flex justify-between items-start mb-8">
+            <div className="flex justify-between items-start mb-8 relative z-10">
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 rounded-full bg-[#1A1A1A] flex items-center justify-center text-[#FFA116] text-xl font-bold border border-white/5">
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -32,103 +100,59 @@ export function CodingProfiles() {
                   <p className="text-[10px] md:text-xs text-[#D4AF37] uppercase tracking-wider font-medium">Competitive Programming & Problem Solving</p>
                 </div>
               </div>
-              <a href="#" className="text-gray-500 hover:text-white transition-colors">
+              <a href="https://leetcode.com/u/Abhijeet_004/" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-white transition-colors relative z-10">
                 <ExternalLink size={20} />
               </a>
             </div>
 
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-              <div>
-                <div className="text-4xl md:text-5xl font-serif text-white mb-1">131</div>
-                <div className="text-xs text-gray-500 uppercase tracking-widest font-medium">Problems Solved</div>
+            {loading ? (
+              <div className="flex flex-col items-center justify-center py-20">
+                <Loader2 className="w-8 h-8 text-[#D4AF37] animate-spin mb-4" />
+                <p className="text-sm text-gray-500 uppercase tracking-widest font-mono">Fetching Live Data...</p>
               </div>
-              <div className="flex flex-col items-start md:items-end bg-black/40 px-4 py-2 rounded-xl border border-white/5">
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Most Recent Badge</span>
-                <span className="text-sm text-white font-medium flex items-center gap-2">
-                  <span className="text-[#D4AF37]">🎖️</span> SQL Top 50
-                </span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-white">1414</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Contest Rating</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-white">78.31%</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Top Ranking</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-teal-400">95</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Easy</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-yellow-500">34</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Medium</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-red-500">2</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Hard</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-white">225+</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Yearly Subs</span>
-              </div>
-            </div>
-          </div>
-
-          {/* SkillRack Card */}
-          <div className="bg-[#0f0f0f]/80 backdrop-blur-md border border-white/5 rounded-3xl p-6 md:p-8 hover:border-white/10 transition-colors shadow-2xl relative overflow-hidden group">
-             {/* Soft background glow */}
-             <div className="absolute top-0 left-0 w-64 h-64 bg-[#D4AF37]/5 blur-[100px] pointer-events-none rounded-full"></div>
-             
-            <div className="flex justify-between items-start mb-8 relative z-10">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-full bg-[#1A1A1A] flex items-center justify-center text-gray-300 font-mono border border-white/5">
-                  &gt;_
+            ) : (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 relative z-10">
+                  <div>
+                    <div className="text-4xl md:text-6xl font-serif text-white mb-1">{stats?.solvedProblem}</div>
+                    <div className="text-xs text-gray-500 uppercase tracking-widest font-medium">Total Problems Solved</div>
+                  </div>
+                  <div className="flex flex-col items-start md:items-end bg-black/40 px-4 py-2 rounded-xl border border-white/5">
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Most Recent Badge</span>
+                    <span className="text-sm text-white font-medium flex items-center gap-2">
+                      <span className="text-[#D4AF37]">🎖️</span> {stats?.badgeName}
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white">SkillRack</h3>
-                  <p className="text-[10px] md:text-xs text-[#D4AF37] uppercase tracking-wider font-medium">Top Coding Practice Platform</p>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 relative z-10">
+                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
+                    <span className="text-lg font-bold text-white">{stats?.contestRating}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Contest Rating</span>
+                  </div>
+                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
+                    <span className="text-lg font-bold text-white">{stats?.topRanking}%</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Top Ranking</span>
+                  </div>
+                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
+                    <span className="text-lg font-bold text-teal-400">{stats?.easySolved}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Easy</span>
+                  </div>
+                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
+                    <span className="text-lg font-bold text-yellow-500">{stats?.mediumSolved}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Medium</span>
+                  </div>
+                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
+                    <span className="text-lg font-bold text-red-500">{stats?.hardSolved}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Hard</span>
+                  </div>
+                  <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
+                    <span className="text-lg font-bold text-white">{stats?.globalRanking?.toLocaleString()}</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1 text-center">Global Rank</span>
+                  </div>
                 </div>
-              </div>
-              <a href="#" className="text-gray-500 hover:text-white transition-colors relative z-10">
-                <ExternalLink size={20} />
-              </a>
-            </div>
-
-            <div className="mb-8 relative z-10">
-              <div className="text-4xl md:text-5xl font-serif text-[#D4AF37] mb-1">1164+</div>
-              <div className="text-xs text-gray-500 uppercase tracking-widest font-medium">Programs Solved</div>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 relative z-10">
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-white">16700</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Current Rank</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-white">823</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Code Track</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-white">37</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Code Test</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-white">304</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Code Tutor</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-white">15</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Certificates</span>
-              </div>
-              <div className="bg-[#050505] rounded-2xl p-4 flex flex-col items-center justify-center border border-white/5">
-                <span className="text-lg font-bold text-[#CD7F32]">319</span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-1">Bronze Medals</span>
-              </div>
-            </div>
+              </motion.div>
+            )}
           </div>
         </div>
 
