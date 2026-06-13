@@ -91,13 +91,13 @@ export function EditorialArsenal() {
         </h2>
       </div>
 
-      <div className="relative w-full py-20">
+      <div className="relative w-full py-20 pl-6 md:pl-12 overflow-visible">
         {/* Draggable container to match the "left to right" scrolling request */}
         <motion.div 
           ref={containerRef}
-          className="flex items-center gap-10 md:gap-16 cursor-grab active:cursor-grabbing px-10 md:px-32"
+          className="flex items-center gap-6 md:gap-10 cursor-grab active:cursor-grabbing pr-[30vw]"
           drag="x"
-          dragConstraints={{ left: -1000, right: 0 }}
+          dragConstraints={{ left: -1200, right: 0 }}
           dragElastic={0.2}
           dragTransition={{ bounceStiffness: 100, bounceDamping: 20 }}
         >
@@ -111,13 +111,17 @@ export function EditorialArsenal() {
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 animate={{
-                  y: isHovered ? -15 : 0,
+                  y: isHovered ? -15 : [0, -6, 0],
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                transition={{ 
+                  y: isHovered 
+                    ? { type: "spring", stiffness: 300, damping: 20 }
+                    : { duration: 4, repeat: Infinity, ease: "easeInOut", delay: idx * 0.2 }
+                }}
               >
                 {/* The Tech Box */}
                 <motion.div
-                  className="w-28 h-28 md:w-32 md:h-32 bg-[#111111] rounded-[2rem] flex items-center justify-center transition-all duration-300 relative z-10"
+                  className="w-20 h-20 md:w-24 md:h-24 bg-[#111111] rounded-3xl flex items-center justify-center transition-all duration-300 relative z-10"
                   animate={{
                     borderColor: isHovered ? tech.color : "rgba(255,255,255,0.05)",
                     borderWidth: isHovered ? "2px" : "1px",
