@@ -52,6 +52,30 @@ const techStack = [
     icon: <span className="text-4xl font-bold text-[#f97316]">Git</span>,
     desc: "Distributed version control system for tracking changes in source code."
   },
+  { 
+    name: "Java", 
+    color: "#ef4444", // red-500
+    icon: <span className="text-4xl font-serif text-[#ef4444] italic">Java</span>,
+    desc: "Object-oriented programming language for enterprise-scale backend systems."
+  },
+  { 
+    name: "HTML/CSS", 
+    color: "#38bdf8", // sky-400
+    icon: <span className="text-3xl font-bold text-[#38bdf8] tracking-widest">&lt;/&gt;</span>,
+    desc: "The fundamental building blocks for web structure and modern styling."
+  },
+  { 
+    name: "Postman", 
+    color: "#f97316", // orange-500
+    icon: <span className="text-3xl font-bold text-[#f97316]">API</span>,
+    desc: "API development and testing platform for rigorous endpoint validation."
+  },
+  { 
+    name: "Linux", 
+    color: "#facc15", // yellow-400
+    icon: <span className="text-4xl font-mono text-[#facc15]">~/</span>,
+    desc: "Core operating system environment for deployment and server management."
+  },
 ];
 
 export function EditorialArsenal() {
