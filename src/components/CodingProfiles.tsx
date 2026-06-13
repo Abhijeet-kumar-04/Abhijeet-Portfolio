@@ -109,24 +109,17 @@ export function CodingProfiles() {
         
         const joined = new Date(data.created_at).getFullYear();
         
-        // Fetch readme stats for commits and contributions
-        let commits = 55;
-        let contribs = 2;
+        // Fetch real contributions graph data
+        let commits = 71; // Fallback
+        let contribs = 2; // Fixed projects backed count
         try {
-          const statsRes = await fetchWithTimeout(`https://github-readme-stats.vercel.app/api?username=${username}`);
-          const statsSvg = await statsRes.text();
-          
-          const contribMatch = statsSvg.match(/Contributed to.*?(\d+)/i);
-          if (contribMatch) contribs = parseInt(contribMatch[1]);
-          
-          // Fetch real contributions graph data (matches GitHub profile exactly)
           const graphRes = await fetchWithTimeout(`https://github-contributions-api.deno.dev/${username}.json`);
           if (graphRes.ok) {
             const graphData = await graphRes.json();
             if (graphData.totalContributions) commits = graphData.totalContributions;
           }
         } catch (e) {
-          console.error("Error parsing stats", e);
+          // Silent fallback
         }
         
         setGithubStats({
