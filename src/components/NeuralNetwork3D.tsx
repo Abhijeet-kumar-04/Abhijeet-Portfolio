@@ -45,13 +45,10 @@ function NetworkNodes() {
     return { particles, originalPositions, positions, colors };
   }, [particleCount]);
 
-  const timeRef = useRef(0);
-
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (!pointsRef.current || !linesRef.current) return;
 
-    timeRef.current += delta;
-    const time = timeRef.current;
+    const time = performance.now() * 0.001;
     const pos = pointsRef.current.geometry.attributes.position.array as Float32Array;
 
     // Convert mouse (-1 to 1) to 3D world coordinates roughly matching the sphere size

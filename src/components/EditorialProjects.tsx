@@ -11,7 +11,7 @@ const ProjectScreenshot = ({ src, alt }: { src: string, alt: string }) => (
     <img 
       src={src} 
       alt={alt} 
-      className="w-full h-full object-contain object-center transition-transform duration-700 group-hover:scale-105"
+      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
     />
   </div>
 );
