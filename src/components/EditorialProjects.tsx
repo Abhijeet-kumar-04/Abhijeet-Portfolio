@@ -34,17 +34,15 @@ export function EditorialProjects() {
       <div className="mb-24 text-center md:text-left">
         <h2 className="font-serif text-4xl md:text-5xl text-white">
           Curated <span className="text-[#D4AF37] italic">Projects</span>
-        </h2>
-      </div>
-
-      <div className="space-y-24">
+      <div className="flex flex-col">
         {portfolioData.projects.map((project, idx) => {
           const isEven = idx % 2 === 0;
+          const isLast = idx === portfolioData.projects.length - 1;
 
           return (
-            <div
-              key={idx}
-              className={`relative flex flex-col ${
+            <React.Fragment key={idx}>
+              <div
+                className={`relative flex flex-col ${
                 isEven ? "lg:flex-row" : "lg:flex-row-reverse"
               } gap-12 lg:gap-16 items-center bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden group/project transition-all duration-700 hover:border-white/10 hover:bg-[#0f0f0f]/90`}
             >
@@ -139,6 +137,19 @@ export function EditorialProjects() {
               </div>
 
             </div>
+
+            {/* Stylish Connecting Timeline Line (Between Projects) */}
+            {!isLast && (
+              <div className="flex justify-center items-center h-24 md:h-32 w-full relative opacity-80">
+                <div className="w-[1px] md:w-[2px] h-full bg-gradient-to-b from-transparent via-[#D4AF37]/40 to-transparent relative">
+                  {/* Glowing Golden Diamond Node in the center */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 md:w-4 md:h-4 rotate-45 border border-[#D4AF37] bg-[#0a0a0a] shadow-[0_0_15px_rgba(212,175,55,0.6)] z-10 flex items-center justify-center">
+                    <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-[#D4AF37] rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </React.Fragment>
           );
         })}
       </div>
