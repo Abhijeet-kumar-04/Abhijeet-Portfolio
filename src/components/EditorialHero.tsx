@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Typewriter from "typewriter-effect";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { NeuralNetwork3D } from "./NeuralNetwork3D";
 
 const ScrambleText = ({ text }: { text: string }) => {
   const [displayText, setDisplayText] = useState("");
@@ -84,41 +85,11 @@ export function EditorialHero() {
       
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 via-transparent to-transparent opacity-30 pointer-events-none z-10"></div>
       
-      {/* High-Tech Blueprint Grid */}
-      <div 
-        className="absolute inset-0 z-0 pointer-events-none opacity-20"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(45, 212, 191, 0.15) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(45, 212, 191, 0.15) 1px, transparent 1px)
-          `,
-          backgroundSize: '4rem 4rem',
-          maskImage: 'radial-gradient(circle at 50% 50%, black 0%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(circle at 50% 50%, black 0%, transparent 80%)',
-        }}
-      ></div>
-
-      {/* Animated Background Ambient Orbs (Brighter) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <motion.div 
-          animate={{ 
-            x: [0, 150, -50, 0], 
-            y: [0, -100, 100, 0],
-            scale: [1, 1.3, 0.8, 1]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-teal-500/10 blur-[100px]"
-        />
-        <motion.div 
-          animate={{ 
-            x: [0, -150, 100, 0], 
-            y: [0, 150, -100, 0],
-            scale: [1, 0.7, 1.4, 1]
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#D4AF37]/10 blur-[120px]"
-        />
+      {/* 3D Neural Network Background */}
+      <div className="absolute inset-0 z-0 opacity-50 mix-blend-screen pointer-events-none">
+        <NeuralNetwork3D />
       </div>
       {/* 1. Glassmorphic Navbar */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-white/5 h-16 flex items-center px-6 md:px-12 justify-between">
@@ -203,39 +174,17 @@ export function EditorialHero() {
               {/* Ultra-soft ambient glow behind the image */}
               <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/10 to-[#D4AF37]/10 blur-[80px] rounded-full transform -translate-y-4 pointer-events-none"></div>
 
-              {/* Custom Animations for Beam */}
-              <style>
-                {`
-                  @keyframes spinBeam {
-                    from { transform: rotate(0deg); }
-                    to { transform: rotate(360deg); }
-                  }
-                `}
-              </style>
-
               {/* The clean image container with a subtle CSS float */}
               <motion.div 
                 animate={{ y: [-8, 8, -8] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                className="relative w-[85%] h-[95%] rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] z-10 group p-[1px] overflow-hidden bg-white/5"
+                className="relative w-[85%] h-[95%] rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/5 z-10 group"
               >
-                {/* The Rotating Conic Gradient Beam */}
-                <div 
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] aspect-square pointer-events-none z-0 opacity-80"
-                  style={{
-                    background: 'conic-gradient(from 0deg, transparent 70%, rgba(45, 212, 191, 1) 85%, rgba(212, 175, 55, 1) 100%)',
-                    animation: 'spinBeam 3s linear infinite',
-                  }}
+                <img 
+                  src="/portrait-2.jpg" 
+                  alt="Abhijeet Kumar" 
+                  className="w-full h-full object-cover object-top filter brightness-[0.90] contrast-[1.1] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" 
                 />
-
-                {/* Inner Image Container (masks the beam to 1px) */}
-                <div className="relative w-full h-full rounded-[15px] overflow-hidden bg-[#0A0A0A] z-10">
-                  <img 
-                    src="/portrait-2.jpg" 
-                    alt="Abhijeet Kumar" 
-                    className="w-full h-full object-cover object-top filter brightness-[0.90] contrast-[1.1] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" 
-                  />
-                </div>
               </motion.div>
 
             </div>
