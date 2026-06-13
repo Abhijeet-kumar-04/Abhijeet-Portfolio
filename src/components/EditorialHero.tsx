@@ -203,17 +203,39 @@ export function EditorialHero() {
               {/* Ultra-soft ambient glow behind the image */}
               <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/10 to-[#D4AF37]/10 blur-[80px] rounded-full transform -translate-y-4 pointer-events-none"></div>
 
+              {/* Custom Animations for Beam */}
+              <style>
+                {`
+                  @keyframes spinBeam {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                  }
+                `}
+              </style>
+
               {/* The clean image container with a subtle CSS float */}
               <motion.div 
                 animate={{ y: [-8, 8, -8] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                className="relative w-[85%] h-[95%] rounded-2xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/5 z-10 group"
+                className="relative w-[85%] h-[95%] rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.6)] z-10 group p-[1px] overflow-hidden bg-white/5"
               >
-                <img 
-                  src="/portrait-2.jpg" 
-                  alt="Abhijeet Kumar" 
-                  className="w-full h-full object-cover object-top filter brightness-[0.90] contrast-[1.1] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" 
+                {/* The Rotating Conic Gradient Beam */}
+                <div 
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] aspect-square pointer-events-none z-0 opacity-80"
+                  style={{
+                    background: 'conic-gradient(from 0deg, transparent 70%, rgba(45, 212, 191, 1) 85%, rgba(212, 175, 55, 1) 100%)',
+                    animation: 'spinBeam 3s linear infinite',
+                  }}
                 />
+
+                {/* Inner Image Container (masks the beam to 1px) */}
+                <div className="relative w-full h-full rounded-[15px] overflow-hidden bg-[#0A0A0A] z-10">
+                  <img 
+                    src="/portrait-2.jpg" 
+                    alt="Abhijeet Kumar" 
+                    className="w-full h-full object-cover object-top filter brightness-[0.90] contrast-[1.1] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" 
+                  />
+                </div>
               </motion.div>
 
             </div>
