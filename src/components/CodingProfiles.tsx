@@ -3,11 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { Loader2, ExternalLink, Code2 } from "lucide-react";
 
-async function fetchWithTimeout(url: string, timeout = 4000) {
+async function fetchWithTimeout(url: string, options: RequestInit = {}, timeout = 4000) {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
   try {
-    const response = await fetch(url, { signal: controller.signal });
+    const response = await fetch(url, { ...options, signal: controller.signal });
     clearTimeout(id);
     return response;
   } catch (err) {
@@ -109,14 +109,19 @@ export function CodingProfiles() {
         
         const joined = new Date(data.created_at).getFullYear();
         
-        // Fetch real contributions graph data
-        let commits = 71; // Fallback
+        // Fetch real all-time commits using the GitHub Search API
+        let commits = 73; // Fallback
         let contribs = 2; // Fixed projects backed count
         try {
-          const graphRes = await fetchWithTimeout(`https://github-contributions-api.deno.dev/${username}.json`);
-          if (graphRes.ok) {
-            const graphData = await graphRes.json();
-            if (graphData.totalContributions) commits = graphData.totalContributions;
+          const commitsRes = await fetchWithTimeout(
+            `https://api.github.com/search/commits?q=author:${username}`,
+            { headers: { 'Accept': 'application/vnd.github.cloak-preview' } }
+          );
+          if (commitsRes.ok) {
+            const commitsData = await commitsRes.json();
+            if (commitsData.total_count !== undefined) {
+              commits = commitsData.total_count;
+            }
           }
         } catch (e) {
           // Silent fallback
@@ -142,7 +147,7 @@ export function CodingProfiles() {
           publicGists: 0,
           totalStars: 24,
           totalForks: 1,
-          totalCommits: 71,
+          totalCommits: 73,
           contributions: 2,
           joinedYear: 2025
         });
@@ -298,7 +303,7 @@ export function CodingProfiles() {
                     </div>
                     <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
                       <span className="text-xl md:text-2xl font-bold text-white">{githubStats?.totalCommits}</span>
-                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Contributions</span>
+                      <span className="text-[10px] text-gray-500 uppercase tracking-wider mt-2 text-center">Total Commits</span>
                     </div>
                     <div className="bg-[#050505] rounded-2xl p-6 flex flex-col items-center justify-center border border-white/5 hover:bg-[#111] transition-colors">
                       <span className="text-xl md:text-2xl font-bold text-teal-400">{githubStats?.contributions}</span>
