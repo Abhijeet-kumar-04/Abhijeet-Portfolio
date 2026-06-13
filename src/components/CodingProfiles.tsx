@@ -110,8 +110,8 @@ export function CodingProfiles() {
         const joined = new Date(data.created_at).getFullYear();
         
         // Fetch absolute all-time Total Contributions (Commits + PRs + Issues)
-        let commits = 91; // Fallback
-        const contribs = 2; // Fixed projects backed count
+        let commits = 167; // Fallback
+        const contribs = 12; // Fixed projects backed count
         try {
           const contribRes = await fetchWithTimeout(
             `https://github-contributions.vercel.app/api/v1/${username}`
@@ -146,8 +146,8 @@ export function CodingProfiles() {
           publicGists: 0,
           totalStars: 24,
           totalForks: 1,
-          totalCommits: 91,
-          contributions: 2,
+          totalCommits: 167,
+          contributions: 12,
           joinedYear: 2025
         });
       } finally {
