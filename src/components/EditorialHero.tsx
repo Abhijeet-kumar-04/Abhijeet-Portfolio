@@ -208,7 +208,7 @@ export function EditorialHero() {
                         <span className="text-amber-200">"MongoDB"</span>
                         <span className="text-gray-500">],</span>
                       </div>
-                      <div><span className="text-teal-400">"dsa_problems_solved"</span><span className="text-gray-500">: </span><span className="text-indigo-400">800</span><span className="text-gray-500">,</span></div>
+                      <div><span className="text-teal-400">"dsa_problems_solved"</span><span className="text-gray-500">: </span><span className="text-indigo-400">800+</span><span className="text-gray-500">,</span></div>
                       <div><span className="text-teal-400">"open_to_opportunities"</span><span className="text-gray-500">: </span><span className="text-indigo-400">true</span></div>
                     </div>
 
