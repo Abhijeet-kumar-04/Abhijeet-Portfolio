@@ -261,7 +261,7 @@ export function EditorialHero() {
                 {/* Inner Image Container to hide the center of the conic gradient */}
                 <div className="relative w-full h-full rounded-2xl overflow-hidden z-10 bg-black">
                   <img 
-                    src="/portrait-2.jpg" 
+                    src="/portrait-2.png" 
                     alt="Abhijeet Kumar" 
                     className="w-full h-full object-cover object-top filter brightness-[0.90] contrast-[1.1] group-hover:brightness-100 group-hover:scale-105 transition-all duration-700" 
                   />
