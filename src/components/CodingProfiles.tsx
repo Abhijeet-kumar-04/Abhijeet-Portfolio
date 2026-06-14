@@ -98,7 +98,21 @@ export function CodingProfiles() {
     async function fetchGitHubData() {
       try {
         const res = await fetchWithTimeout('/api/github');
-        if (!res.ok) throw new Error("Failed to fetch from internal GitHub API");
+        if (!res.ok) {
+          console.warn("GitHub API not configured or failed, using fallback data");
+          setGithubStats({
+            publicRepos: 11,
+            followers: 2,
+            following: 4,
+            publicGists: 0,
+            totalStars: 24,
+            totalForks: 1,
+            totalCommits: 189,
+            contributions: 12,
+            joinedYear: 2025
+          });
+          return;
+        }
         const data = await res.json();
         
         setGithubStats({
