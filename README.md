@@ -80,7 +80,7 @@ To run this project on your local machine:
 I am actively open to Software Engineering, Backend Architecture, and Full Stack Development opportunities. Let's build something incredible.
 
 - **GitHub:** [@Abhijeet-kumar-04](https://github.com/Abhijeet-kumar-04)
-- **LinkedIn:** [Abhijeet Kumar](https://linkedin.com/in/abhijeet-kumar-04)
+- **LinkedIn:** [Abhijeet Kumar](https://www.linkedin.com/in/abhijeet-kumar-2a280b2a3/)
 - **LeetCode:** [Abhijeetkumar04](https://leetcode.com/u/Abhijeetkumar04/)
 
 ---
