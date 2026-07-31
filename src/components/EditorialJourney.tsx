@@ -14,7 +14,7 @@ export function EditorialJourney() {
           
           <div className="space-y-6 text-gray-400 font-sans text-lg leading-relaxed font-light">
             <p>
-              I am a software engineer deeply passionate about building the foundational architecture that powers modern web applications. My journey is rooted in a strong command of C++ and Data Structures, which has shaped my approach to solving complex problems efficiently.
+              I am a Computer Science Student at NIT SILCHAR deeply passionate about building the foundational architecture that powers modern web applications. My journey is rooted in a strong command of C++ and Data Structures, which has shaped my approach to solving complex problems efficiently.
             </p>
             <p>
               By bridging the gap between scalable backend systems and rigorous competitive programming, I aim to create solutions that don't just function, but truly perform under pressure. My code is my craft—minimalist, secure, and infinitely scalable.
