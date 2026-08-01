@@ -51,21 +51,20 @@ export function CodingProfiles() {
     async function fetchLeetCodeData() {
       try {
         const username = "Abhijeet_004";
-        // Fetch solved stats
-        const solvedRes = await fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}/solved`);
-        const solvedData = await solvedRes.json();
         
-        // Fetch contest stats
-        const contestRes = await fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}/contest`);
-        const contestData = await contestRes.json();
-        
-        // Fetch badges
-        const badgesRes = await fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}/badges`);
-        const badgesData = await badgesRes.json();
+        const [solvedRes, contestRes, badgesRes, profileRes] = await Promise.all([
+          fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}/solved`, {}, 15000),
+          fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}/contest`, {}, 15000),
+          fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}/badges`, {}, 15000),
+          fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}`, {}, 15000)
+        ]);
 
-        // Fetch ranking
-        const profileRes = await fetchWithTimeout(`https://alfa-leetcode-api.onrender.com/${username}`);
-        const profileData = await profileRes.json();
+        const [solvedData, contestData, badgesData, profileData] = await Promise.all([
+          solvedRes.json(),
+          contestRes.json(),
+          badgesRes.json(),
+          profileRes.json()
+        ]);
 
         setStats({
           solvedProblem: solvedData.solvedProblem || 131,
